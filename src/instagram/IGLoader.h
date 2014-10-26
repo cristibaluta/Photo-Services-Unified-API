@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "IGConnect.h"
-#import "ISLoader.h"
-#import "ISAlbum.h"
+#import "PSULoader.h"
+#import "PSUAlbum.h"
 #import "WebPhoto.h"
 //#import "AppDelegate.h"
 
-@interface IGLoader : ISLoader <IGRequestDelegate>
+@interface IGLoader : PSULoader <IGRequestDelegate>
 
 
 @end

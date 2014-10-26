@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "ISLoginManager.h"
+#import "PSULoginManager.h"
 
-@implementation ISLoginManager
+@implementation PSULoginManager
 
 - (id) init {
 	self = [super init];

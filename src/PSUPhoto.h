@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class ISPhoto;
+@class PSUPhoto;
 
 @protocol ISPhotoDelegate <NSObject>
-- (void) loadFinishedForPhoto:(ISPhoto*)photo;
+- (void)loadFinishedForPhoto:(PSUPhoto*)photo;
 @end
 
-@interface ISPhoto : NSObject
+@interface PSUPhoto : NSObject
 
 @property (nonatomic, weak) id<ISPhotoDelegate> delegate;
 @property (nonatomic, strong) NSIndexPath *indexPath;
@@ -30,9 +30,9 @@
 @property (nonatomic) BOOL faceRectDone;
 @property (nonatomic, strong) NSDate *date;
 
-- (void) select:(BOOL)v;
-- (void) preloadThumbImage;
-- (void) preloadSourceImage;
-- (void) dispatchLoadComplete;
+- (void)select:(BOOL)v;
+- (void)preloadThumbImage;
+- (void)preloadSourceImage;
+- (void)dispatchLoadComplete;
 
 @end

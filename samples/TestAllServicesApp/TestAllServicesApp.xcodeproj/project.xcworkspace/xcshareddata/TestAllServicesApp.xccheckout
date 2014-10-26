@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>52DD2125-89DA-4610-B577-4CEA1A0C231C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TestAllServicesApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</key>
+		<string>https://github.com/ralcr/Photo-Services-Unified-API.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>samples/TestAllServicesApp/TestAllServicesApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ralcr/Photo-Services-Unified-API.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Photo-Services-Unified-API</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -17,7 +17,7 @@
 	NSArray *titles = [NSArray arrayWithObjects:@"My feed", @"My photos", @"Photos that i liked", @"Popular", nil];
 	
 	for (int i=0; i<[methods count]; i++) {
-		ISAlbum *album = [[ISAlbum alloc] init];
+		PSUAlbum *album = [[PSUAlbum alloc] init];
 		album.type = 3;
 		album.name = [titles objectAtIndex:i];
 		album.count = 1;

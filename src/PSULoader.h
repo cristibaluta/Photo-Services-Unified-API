@@ -15,7 +15,7 @@
 
 @end
 
-@interface ISLoader : NSObject {
+@interface PSULoader : NSObject {
 	
 	
 }

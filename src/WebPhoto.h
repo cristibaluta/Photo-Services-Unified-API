@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "ISPhoto.h"
+#import "PSUPhoto.h"
 
-@interface WebPhoto : ISPhoto {
+@interface WebPhoto : PSUPhoto {
 	BOOL loadingThumb;
 }
 

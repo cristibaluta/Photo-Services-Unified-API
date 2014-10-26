@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ISAlbum.h"
+#import "PSUAlbum.h"
 
-@interface FBAlbum : ISAlbum
+@interface FBAlbum : PSUAlbum
 
 @end

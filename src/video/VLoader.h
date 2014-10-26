@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "ISLoader.h"
+#import "PSULoader.h"
 #import "VItem.h"
 
-@interface VLoader : ISLoader
+@interface VLoader : PSULoader
 
 @end

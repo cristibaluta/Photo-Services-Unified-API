@@ -16,7 +16,7 @@
 	NSArray *titles = [NSArray arrayWithObjects:@"My photos", @"Friends", @"Favourites", nil];
 	
 	for (int i=0; i<[ids count]; i++) {
-		ISAlbum *album = [[ISAlbum alloc] init];
+		PSUAlbum *album = [[PSUAlbum alloc] init];
 		album.type = 4;
 		album.name = [titles objectAtIndex:i];
 		album.count = 1;

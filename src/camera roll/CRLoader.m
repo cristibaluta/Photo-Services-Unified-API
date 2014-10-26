@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "LIBLoader.h"
+#import "CRLoader.h"
 
-@implementation LIBLoader
+@implementation CRLoader
 
 - (id) init {
 	self = [super init];
@@ -19,15 +19,15 @@
 }
 
 - (void) requestAlbums {
-	RCLog(@"LIBLoader request albums");
+	NSLog(@"LIBLoader request albums");
 	ALAssetsLibraryAccessFailureBlock failHandler = ^(NSError *error) {
-		RCLog(@"failed");
+		NSLog(@"failed");
     };
 	
 	ALAssetsLibraryGroupsEnumerationResultsBlock groupsEnumerator = ^(ALAssetsGroup *group, BOOL *stop) {
 		//RCLog(@"%@", group);
         if (group != nil) {
-			LIBAlbum *album = [[LIBAlbum alloc] init];
+			CRAlbum *album = [[CRAlbum alloc] init];
 			
 			album.groupRef = group;
 			album.type = 1;
@@ -50,11 +50,11 @@
 }
 
 - (void) requestPhotosForAlbumId:(NSString*)albumId {
-	RCLog(@"LIBLoader request photos for album id %@", albumId);
+	NSLog(@"LIBLoader request photos for album id %@", albumId);
 	[self.photos removeAllObjects];
 	// Search the album with the albumId
 	ALAssetsGroup *groupRef;
-	for (LIBAlbum *album in self.albums) {
+	for (CRAlbum *album in self.albums) {
 		if ([albumId isEqualToString:album.albumId]) {
 			groupRef = album.groupRef;
 			break;
@@ -69,7 +69,7 @@
 			NSURL *url = [dict objectForKey:@"public.jpeg"];
 			if (url != nil) {
 				//RCLog(@"%@", url);
-				LIBPhoto *cell = [[LIBPhoto alloc] init];
+				CRPhoto *cell = [[CRPhoto alloc] init];
 				cell.type = 1;//ISTypeLibrary;
 				cell.thumbUrl = url;
 				cell.sourceUrl = url;

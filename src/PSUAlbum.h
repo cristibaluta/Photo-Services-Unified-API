@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol ISAlbumDelegate <NSObject>
 - (void) loadFinishedForIndexPath:(NSIndexPath*)indexPath;
 @end
 
-@interface ISAlbum : NSObject
+@interface PSUAlbum : NSObject
 
 @property (nonatomic, weak) id<ISAlbumDelegate> delegate;
 @property (nonatomic) int type;// ISType
@@ -25,8 +25,8 @@
 
 @property (nonatomic) BOOL busy;
 
-- (void) preloadCoverImage;
-- (void) dispatchLoadComplete;
+- (void)preloadCoverImage;
+- (void)dispatchLoadComplete;
 
 @end
 

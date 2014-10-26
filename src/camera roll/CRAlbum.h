@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ISAlbum.h"
+#import "PSUAlbum.h"
 
-@interface LIBAlbum : ISAlbum
+@interface CRAlbum : PSUAlbum
 
 @property (nonatomic, strong) ALAssetsGroup *groupRef;
 @end

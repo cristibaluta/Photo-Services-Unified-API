@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ISLoader.h"
-#import "ISAlbum.h"
-#import "LIBAlbum.h"
-#import "LIBPhoto.h"
+#import "PSULoader.h"
+#import "PSUAlbum.h"
+#import "CRAlbum.h"
+#import "CRPhoto.h"
 //#import "ISPhotosManager.h"
 
-@interface LIBLoader : ISLoader {
+@interface CRLoader : PSULoader {
 	
 	ALAssetsLibrary *assetslibrary;
 }

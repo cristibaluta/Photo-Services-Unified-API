@@ -7,8 +7,8 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ISPhoto.h"
+#import "PSUPhoto.h"
 
-@interface LIBPhoto : ISPhoto
+@interface CRPhoto : PSUPhoto
 
 @end

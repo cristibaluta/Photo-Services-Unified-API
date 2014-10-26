@@ -10,10 +10,10 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBAlbum.h"
 #import "WebPhoto.h"
-#import "ISLoader.h"
+#import "PSULoader.h"
 //#import "ISPhotosManager.h"
 
-@interface FBLoader : ISLoader {
+@interface FBLoader : PSULoader {
 	
 	FBRequest *req;
 }

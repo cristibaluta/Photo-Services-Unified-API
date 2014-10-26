@@ -23,7 +23,7 @@
 
 @end
 
-@interface ISLoginManager : NSObject <IGSessionDelegate, UIAlertViewDelegate> {
+@interface PSULoginManager : NSObject <IGSessionDelegate, UIAlertViewDelegate> {
 	ImageSourceType loggingTo;
 	NSUInteger px_user_id;
 	BOOL fb_login;

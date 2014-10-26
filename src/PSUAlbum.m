@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "ISAlbum.h"
+#import "PSUAlbum.h"
 
-@implementation ISAlbum
+@implementation PSUAlbum
 
 - (void) preloadCoverImage {
 }

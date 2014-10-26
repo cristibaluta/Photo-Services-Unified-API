@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "LIBAlbum.h"
+#import "CRAlbum.h"
 
-@implementation LIBAlbum
+@implementation CRAlbum
 
 
 // This is already loaded

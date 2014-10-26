@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "ISLoader.h"
+#import "PSULoader.h"
 
-@implementation ISLoader
+@implementation PSULoader
 
 - (id) init {
 	self = [super init];

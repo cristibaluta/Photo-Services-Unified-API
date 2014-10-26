@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "LIBPhoto.h"
+#import "CRPhoto.h"
 
-@implementation LIBPhoto
+@implementation CRPhoto
 
 - (void) preloadThumbImage {
 	
@@ -20,7 +20,7 @@
 			[self dispatchLoadComplete];
 		};
 		ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
-			RCLog(@"Cant get image - %@", [myerror localizedDescription]);
+			NSLog(@"Cant get image - %@", [myerror localizedDescription]);
 		};
 		
 		ALAssetsLibrary *assetslibrary = [[ALAssetsLibrary alloc] init];
@@ -32,7 +32,7 @@
 }
 - (void) preloadSourceImage {
 	
-	RCLog(@"preloadSourceImage %@", self.sortedIndexPath);
+	NSLog(@"preloadSourceImage %@", self.sortedIndexPath);
 	if (self.sourceImage == nil) {
 		
 		ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset){
@@ -45,11 +45,11 @@
 				[self dispatchLoadComplete];
 			}
 			else {
-				RCLog(@"error creating the fullscreen version of the image");
+				NSLog(@"error creating the fullscreen version of the image");
 			}
 		};
 		ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
-			RCLog(@"Cant get image - %@", [myerror localizedDescription]);
+			NSLog(@"Cant get image - %@", [myerror localizedDescription]);
 		};
 		
 		ALAssetsLibrary *assetslibrary = [[ALAssetsLibrary alloc] init];
