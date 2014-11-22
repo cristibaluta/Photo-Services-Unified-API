@@ -14,10 +14,6 @@
 #import "CRPhoto.h"
 //#import "ISPhotosManager.h"
 
-@interface CRLoader : PSULoader {
-	
-	ALAssetsLibrary *assetslibrary;
-}
-
+@interface CRLoader : PSULoader
 
 @end

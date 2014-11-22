@@ -8,12 +8,18 @@
 
 #import "CRLoader.h"
 
+@interface CRLoader () {
+	
+	ALAssetsLibrary *_assetslibrary;
+}
+@end
+
 @implementation CRLoader
 
 - (id) init {
 	self = [super init];
 	if (self) {
-		assetslibrary = [[ALAssetsLibrary alloc] init];
+		_assetslibrary = [[ALAssetsLibrary alloc] init];
 	}
 	return self;
 }
@@ -43,7 +49,7 @@
 		}
     };
 	
-	[assetslibrary enumerateGroupsWithTypes:ALAssetsGroupAll
+	[_assetslibrary enumerateGroupsWithTypes:ALAssetsGroupAll
 								 usingBlock:groupsEnumerator
 							   failureBlock:failHandler];
 	
