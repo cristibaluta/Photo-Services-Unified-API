@@ -12,5 +12,11 @@
 
 @interface CRAlbum : PSUAlbum
 
-@property (nonatomic, strong) ALAssetsGroup *groupRef;
+- (instancetype)initWithAssetGroup:(ALAssetsGroup *)groupRef;
+
+/*!
+ 
+ */
+@property (nonatomic, readonly) ALAssetsGroup *groupRef;
+
 @end

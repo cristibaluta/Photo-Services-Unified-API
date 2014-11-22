@@ -7,11 +7,13 @@
 //
 
 #import "IGLoader.h"
-#import "AppDelegate.h"
+#import "PSUAlbum.h"
+#import "PSUWebPhoto.h"
+#import "PSUEnums.h"
 
 @implementation IGLoader
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	
 	NSArray *methods = [NSArray arrayWithObjects:@"/users/self/feed", @"/users/self/media/recent", @"/users/self/media/liked", @"/media/popular", nil];
 	NSArray *titles = [NSArray arrayWithObjects:@"My feed", @"My photos", @"Photos that i liked", @"Popular", nil];
@@ -23,17 +25,17 @@
 		album.count = 1;
 		album.albumId = [methods objectAtIndex:i];
 		album.coverImage = [UIImage imageNamed:@"CellHeaderInstagram"];
-		[self.albums addObject:album];
+		[_albums addObject:album];
 	}
 	
 	[self.delegate albumsLoaded:self.albums];
 }
 
-- (void) requestPhotosForAlbumId:(NSString*)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId {
 	
-	[self.photos removeAllObjects];
-	RCLog(@"requestPhotosForAlbumId %@", albumId);
-	AppDelegate *app = [[UIApplication sharedApplication] delegate];
+	[_photos removeAllObjects];
+	NSLog(@"requestPhotosForAlbumId %@", albumId);
+	
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:albumId, @"method", @"-1", @"count", nil];
     [app.login.instagram requestWithParams:params delegate:self];
 }
@@ -52,7 +54,7 @@
     NSArray *data = (NSArray*)[result objectForKey:@"data"];
 	RCLog(@"did load %i", [data count]);
 	for (id obj in data) {
-		WebPhoto *photo = [[WebPhoto alloc] init];
+		PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
 		NSDictionary *images = [obj objectForKey:@"images"];
 		//RCLog(@"%@", images);
 		photo.type = 3;

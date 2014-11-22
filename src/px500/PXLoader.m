@@ -6,11 +6,14 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
+#import <PXAPI/PXAPI.h>
 #import "PXLoader.h"
+#import "PSUAlbum.h"
+#import "PSUWebPhoto.h"
 
 @implementation PXLoader
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	
 	NSArray *ids = [NSArray arrayWithObjects:@"0", @"1", @"2", nil];
 	NSArray *titles = [NSArray arrayWithObjects:@"My photos", @"Friends", @"Favourites", nil];
@@ -22,16 +25,16 @@
 		album.count = 1;
 		album.albumId = [ids objectAtIndex:i];
 		album.coverImage = [UIImage imageNamed:@"CellHeaderPx500"];
-		[self.albums addObject:album];
+		[_albums addObject:album];
 	}
 	
 	[self.delegate albumsLoaded:self.albums];
 	
 }
 
-- (void) requestPhotosForAlbumId:(NSString*)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId {
 	
-	[self.photos removeAllObjects];
+	[_photos removeAllObjects];
 	NSUInteger uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"px_user_id"];
 	[PXRequest requestForPhotosOfUserID:uid  userFeature:[albumId integerValue] resultsPerPage:100 completion:^(NSDictionary *results, NSError *error) {
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -42,16 +45,16 @@
 			
 			for (NSDictionary *obj in photos) {
 				
-				WebPhoto *photo = [[WebPhoto alloc] init];
+				PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
 				photo.type = 4;
 				
 				NSArray *images = [obj valueForKey:@"image_url"];
 				
-				photo.thumbUrl = [NSURL URLWithString:[[images objectAtIndex:0] stringByReplacingOccurrencesOfString:@"/3." withString:@"/2."]];
-				photo.sourceUrl = [NSURL URLWithString:[[images objectAtIndex:0] stringByReplacingOccurrencesOfString:@"/3." withString:@"/4."]];
+				photo.thumbUrl = [NSURL URLWithString:[images[0] stringByReplacingOccurrencesOfString:@"/3." withString:@"/2."]];
+				photo.sourceUrl = [NSURL URLWithString:[images[0] stringByReplacingOccurrencesOfString:@"/3." withString:@"/4."]];
 				photo.selected = YES;
 				//NSString *datestr = [obj objectForKey:@"created_at"];//"created_at" = "2012-07-08T14:59:13-04:00";
-				[self.photos addObject:photo];
+				[_photos addObject:photo];
 			}
 		}
 		[self.delegate photosLoaded:self.photos];
@@ -73,7 +76,7 @@ images =             (
 					  }
 					  );*/
 
-- (void) cancel {
+- (void)cancel {
 	// There's nothing to cancel when enumerating the groups
 }
 

@@ -7,6 +7,14 @@
 //
 
 #import "PSULoginManager.h"
+#import "PSUEnums.h"
+
+@interface PSULoginManager () <IGSessionDelegate, UIAlertViewDelegate> {
+	PSUSourceType loggingTo;
+	NSUInteger px_user_id;
+	BOOL fb_login;
+}
+@end
 
 @implementation PSULoginManager
 
@@ -20,16 +28,16 @@
 	return self;
 }
 
-- (void) activate {
+- (void)activate {
 	[FBSession.activeSession handleDidBecomeActive];
 }
 
-- (void) deactivate {
+- (void)deactivate {
 	[self.session close];
 }
 
 - (BOOL) handleOpenURL:(NSURL*)url {
-	RCLog(@"handleopenurl %@", url);
+	NSLog(@"handleopenurl %@", url);
 	if ([[url absoluteString] hasPrefix:@"fb"]) {
 		return [[FBSession activeSession] handleOpenURL:url];
 	}
@@ -39,11 +47,11 @@
 	return NO;
 }
 
-- (void) login:(ImageSourceType)type {
+- (void)login:(ImageSourceType)type {
 	
 	switch (type) {
 		
-		case ISTypeFacebook: {
+		case PSUSourceTypeFacebook: {
 			RCLog(@"login to fb");
 			//NSArray *permissions = [[NSArray alloc] initWithObjects:@"user_photos", nil];
 			
@@ -86,15 +94,16 @@
 //										  completionHandler:completeHandler];
 		};
 		break;
-		case ISTypeInstagram: {
-			RCLog(@"login to instagram");
+			
+		case PSUSourceTypeInstagram: {
+			NSLog(@"login to instagram");
 			self.instagram = [[Instagram alloc] initWithClientId:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"InstagramAppID"] delegate:nil];
 			self.instagram.sessionDelegate = self;
-			[self.instagram authorize:[NSArray arrayWithObjects:@"likes", nil]];
+			[self.instagram authorize:@[@"likes"]];
 		}
 		break;
 			
-		case ISTypePx500: {
+		case PSUSourceType500Px: {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"500px Login" message:@"Enter in your 500px login credentials" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
 			alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
 			alert.delegate = self;
@@ -108,10 +117,15 @@
 			[alert show];
 		}
 		break;
+			
+		case PSUSourceTypePhotosightRu: {
+			
+		}
+			break;
 	}
 }
 
-- (BOOL) isLoggedIn:(ImageSourceType)type {
+- (BOOL)isLoggedIn:(PSUSourceType)type {
 	
 	switch (type) {
 		
@@ -129,26 +143,24 @@
 }
 
 
-
-
 #pragma - IGSessionDelegate
 
 - (void)igDidLogin {
     // here i can store accessToken
-    [[NSUserDefaults standardUserDefaults] setObject:self.instagram.accessToken forKey:@"accessToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.instagram.accessToken forKey:@"PSUSourceTypeInstagramAccessToken"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
-	[self.delegate loginComplete:ISTypeInstagram];
+	[self.delegate loginComplete:PSUSourceTypeInstagram];
 }
 
 - (void)igDidNotLogin:(BOOL)cancelled {
 	
-    NSString* message = nil;
+    NSString *message = nil;
     if (cancelled) {
         message = @"Access cancelled!";
     } else {
         message = @"Access denied!";
     }
-	[self.delegate loginError:ISTypeInstagram];
+	[self.delegate loginError:PSUSourceTypeInstagram];
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:message
                                                        delegate:nil
@@ -164,13 +176,12 @@
 }
 
 #pragma mark 500px login
-
 #pragma mark - UIAlertViewDelegate Methods
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	
-    NSString *userName = [[alertView textFieldAtIndex:0] text];
-    NSString *password = [[alertView textFieldAtIndex:1] text];
+    NSString *userName = [alertView[0] text];
+    NSString *password = [alertView[1] text];
     
 	if (userName == nil || password == nil) {
 		[self.delegate loginError:ISTypePx500];
@@ -180,17 +191,19 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	
 	[PXRequest authenticateWithUserName:userName password:password completion:^(BOOL success) {
+		
 		if (success) {
 			[PXRequest requestForCurrentlyLoggedInUserWithCompletion:^(NSDictionary *results, NSError *error) {
 				
 				px_user_id = [[[results objectForKey:@"user"] objectForKey:@"id"] integerValue];
+				
 				[[NSUserDefaults standardUserDefaults] setInteger:px_user_id forKey:@"px_user_id"];
 				[[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"500pxuser"];
-				[self.delegate loginComplete:ISTypePx500];
+				[self.delegate loginComplete:PSUSourceType500Px];
 			}];
 		}
 		else {
-			[self.delegate loginError:ISTypePx500];
+			[self.delegate loginError:PSUSourceType500Px];
 		}
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	}];

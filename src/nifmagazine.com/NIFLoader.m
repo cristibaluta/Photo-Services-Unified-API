@@ -24,7 +24,7 @@
 	return self;
 }
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	NSLog(@"LIBLoader request albums");
 	ALAssetsLibraryAccessFailureBlock failHandler = ^(NSError *error) {
 		NSLog(@"failed");
@@ -55,7 +55,7 @@
 	
 }
 
-- (void) requestPhotosForAlbumId:(NSString*)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId {
 	NSLog(@"LIBLoader request photos for album id %@", albumId);
 	[self.photos removeAllObjects];
 	// Search the album with the albumId
@@ -92,7 +92,7 @@
 	[groupRef enumerateAssetsUsingBlock:groupEnumerator];
 }
 
-- (void) cancel {
+- (void)cancel {
 	// There's nothing to cancel when enumerating the groups
 }
 

@@ -10,7 +10,7 @@
 
 @implementation CRPhoto
 
-- (void) preloadThumbImage {
+- (void)preloadThumbImage {
 	
     if (self.thumbImage == nil) {
 		
@@ -30,7 +30,7 @@
         [self dispatchLoadComplete];
     }
 }
-- (void) preloadSourceImage {
+- (void)preloadSourceImage {
 	
 	NSLog(@"preloadSourceImage %@", self.sortedIndexPath);
 	if (self.sourceImage == nil) {

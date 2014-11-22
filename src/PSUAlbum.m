@@ -10,10 +10,11 @@
 
 @implementation PSUAlbum
 
-- (void) preloadCoverImage {
+- (void)preloadCoverImage {
+	
 }
 
-- (void) dispatchLoadComplete {
+- (void)dispatchLoadComplete {
     if ([self.delegate respondsToSelector:@selector(loadFinishedForIndexPath:)])
         [self.delegate performSelector:@selector(loadFinishedForIndexPath:) withObject:self.indexPath];
 }

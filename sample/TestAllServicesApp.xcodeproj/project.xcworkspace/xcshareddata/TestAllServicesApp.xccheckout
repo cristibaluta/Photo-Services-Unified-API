@@ -12,13 +12,17 @@
 	<dict>
 		<key>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</key>
 		<string>https://github.com/ralcr/Photo-Services-Unified-API.git</string>
+		<key>D5DE4AB2A608D700DE6AC41A7F328B299F57392F</key>
+		<string>https://github.com/ralcr/RCLog.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>samples/TestAllServicesApp/TestAllServicesApp.xcodeproj</string>
+	<string>sample/TestAllServicesApp.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</key>
-		<string>../../../..</string>
+		<string>../../..</string>
+		<key>D5DE4AB2A608D700DE6AC41A7F328B299F57392F</key>
+		<string>../../../../RCLog</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ralcr/Photo-Services-Unified-API.git</string>
@@ -35,6 +39,14 @@
 			<string>58D04093ECBBFE6E505D14E485F6AC92F5AE9F51</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Photo-Services-Unified-API</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D5DE4AB2A608D700DE6AC41A7F328B299F57392F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RCLog</string>
 		</dict>
 	</array>
 </dict>

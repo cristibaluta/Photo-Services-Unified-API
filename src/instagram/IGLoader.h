@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "IGConnect.h"
 #import "PSULoader.h"
-#import "PSUAlbum.h"
-#import "WebPhoto.h"
-//#import "AppDelegate.h"
 
 @interface IGLoader : PSULoader <IGRequestDelegate>
 

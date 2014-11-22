@@ -7,20 +7,49 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSUEnums.h"
 
-@protocol ISAlbumDelegate <NSObject>
-- (void) loadFinishedForIndexPath:(NSIndexPath*)indexPath;
+@protocol PSUAlbumDelegate <NSObject>
+- (void)loadFinishedForIndexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface PSUAlbum : NSObject
 
-@property (nonatomic, weak) id<ISAlbumDelegate> delegate;
-@property (nonatomic) int type;// ISType
-@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, weak) id<PSUAlbumDelegate> delegate;
+
+/*!
+ The image representative for this album. It is available after is loaded
+ */
+@property (nonatomic) PSUSourceType type;// ISType
+
+/*!
+ IndexPath ready to use by a UITableView
+ */
+@property (nonatomic, copy) NSIndexPath *indexPath;
+
+/*!
+ The number of albums
+ */
 @property (nonatomic) int count;
+
+/*!
+ The URL of the image representative for this album
+ */
 @property (nonatomic, retain) NSURL *coverUrl;
+
+/*!
+ The image representative for this album. It is available after is loaded
+ */
 @property (nonatomic, retain) UIImage *coverImage;
+
+/*!
+ Album id
+ */
 @property (nonatomic, retain) NSString *albumId;
+
+/*!
+ Album name
+ */
 @property (nonatomic, retain) NSString *name;
 
 @property (nonatomic) BOOL busy;

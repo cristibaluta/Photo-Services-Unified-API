@@ -10,21 +10,20 @@
 
 @implementation PSUPhoto
 
-- (void) select:(BOOL)v {
+- (void)select:(BOOL)v {
 	self.selected = v;
 }
 
-- (void) preloadThumbImage{
+- (void)preloadThumbImage{
 	
 }
 
-- (void) preloadSourceImage{
+- (void)preloadSourceImage{
 	
 }
 
-- (void) dispatchLoadComplete {
-    if ([self.delegate respondsToSelector:@selector(loadFinishedForPhoto:)])
-        [self.delegate performSelector:@selector(loadFinishedForPhoto:) withObject:self];
+- (void)dispatchLoadComplete {
+	[self.delegate photoFinishedLoading:self];
 }
 
 @end

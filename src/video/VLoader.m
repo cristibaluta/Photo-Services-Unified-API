@@ -11,7 +11,7 @@
 @implementation VLoader
 
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	RCLog(@"VLoader request albums");
 	
 	NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];

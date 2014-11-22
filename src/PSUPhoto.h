@@ -7,28 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSUEnums.h"
 
 @class PSUPhoto;
 
-@protocol ISPhotoDelegate <NSObject>
-- (void)loadFinishedForPhoto:(PSUPhoto*)photo;
+@protocol PSUPhotoDelegate <NSObject>
+
+@required
+- (void)photoFinishedLoading:(PSUPhoto *)photo;
+
 @end
 
 @interface PSUPhoto : NSObject
 
-@property (nonatomic, weak) id<ISPhotoDelegate> delegate;
-@property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) NSIndexPath *sortedIndexPath;
+@property (nonatomic, weak) id<PSUPhotoDelegate> delegate;
+@property (nonatomic, copy) NSIndexPath *indexPath;
+@property (nonatomic, copy) NSIndexPath *sortedIndexPath;
 @property (nonatomic) BOOL selected;
 @property (nonatomic) BOOL isLoading;
-@property (nonatomic) int type;// ISType
-@property (nonatomic, strong) NSURL *thumbUrl;
-@property (nonatomic, strong) NSURL *sourceUrl;
+@property (nonatomic) PSUSourceType type;
+@property (nonatomic, copy) NSURL *thumbUrl;
+@property (nonatomic, copy) NSURL *sourceUrl;
 @property (nonatomic, strong) UIImage *thumbImage;
 @property (nonatomic, strong) UIImage *sourceImage;
 @property (nonatomic) CGRect faceRect;
 @property (nonatomic) BOOL faceRectDone;
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSDate *date;
 
 - (void)select:(BOOL)v;
 - (void)preloadThumbImage;

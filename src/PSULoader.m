@@ -8,6 +8,9 @@
 
 #import "PSULoader.h"
 
+@interface PSULoader ()
+@end
+
 @implementation PSULoader
 
 - (id) init {
@@ -21,14 +24,24 @@
 
 // Override this methods
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	
 }
-- (void) requestPhotosForAlbumId:(NSString*)albumId {
+
+- (void)requestPhotosForAlbumId:(NSString *)albumId {
 	
 }
-- (void) cancel {
+
+- (void)cancel {
 	
+}
+
+- (NSArray *)albums {
+	return [NSArray arrayWithArray:_albums];
+}
+
+- (NSArray *)photos {
+	return [NSArray arrayWithArray:_photos];
 }
 
 

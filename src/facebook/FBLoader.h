@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "FBAlbum.h"
-#import "WebPhoto.h"
+#import "PSUWebPhoto.h"
 #import "PSULoader.h"
 //#import "ISPhotosManager.h"
 

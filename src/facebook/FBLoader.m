@@ -8,14 +8,20 @@
 
 #import "FBLoader.h"
 
+@interface FBLoader () {
+	
+	FBRequest *_request;
+}
+@end
+
 @implementation FBLoader
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	
 	id completionHandler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		
 		if (result != nil) {
-			RCLog(@"%@", result);
+			NSLog(@"%@", result);
 			NSArray *a = [result objectForKey:@"data"];
 			
 			for (id obj in a) {
@@ -25,9 +31,11 @@
 				FBAlbum *album = [[FBAlbum alloc] init];
 				album.type = 2;
 				album.name = [obj objectForKey:@"name"];
-				album.count = [[obj objectForKey:@"count"] integerValue];
+				album.count = (int)[[obj objectForKey:@"count"] integerValue];
 				album.albumId = [obj objectForKey:@"id"];
-				album.coverUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=album&access_token=%@", [obj objectForKey:@"cover_photo"], [[FBSession activeSession] accessToken]]];
+				album.coverUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=album&access_token=%@",
+													   [obj objectForKey:@"cover_photo"],
+													   [[FBSession activeSession] accessToken]]];
 				[self.albums addObject:album];
 			}
 			
@@ -43,7 +51,7 @@
 	
 }
 
-- (void) requestPhotosForAlbumId:(NSString*)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId {
 	
 	[self.photos removeAllObjects];
 	//RCLog(@"requestPhotosForAlbumId %@", albumId);
@@ -53,7 +61,7 @@
 			NSArray *data = [result objectForKey:@"data"];
 			
 			for (id obj in data) {
-				WebPhoto *photo = [[WebPhoto alloc] init];
+				PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
 				photo.type = 2;
 				photo.thumbUrl = [NSURL URLWithString:[obj objectForKey:@"picture"]];
 				photo.sourceUrl = [NSURL URLWithString:[obj objectForKey:@"source"]];
@@ -70,7 +78,7 @@
 	[req startWithCompletionHandler:completionHandler];
 }
 
-- (void) cancel {
+- (void)cancel {
 	// There's nothing to cancel when enumerating the groups
 	
 }

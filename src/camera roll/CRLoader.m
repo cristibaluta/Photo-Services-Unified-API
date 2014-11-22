@@ -7,6 +7,11 @@
 //
 
 #import "CRLoader.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "PSUAlbum.h"
+#import "CRAlbum.h"
+#import "CRPhoto.h"
+#import "PSUEnums.h"
 
 @interface CRLoader () {
 	
@@ -24,7 +29,7 @@
 	return self;
 }
 
-- (void) requestAlbums {
+- (void)requestAlbums {
 	NSLog(@"LIBLoader request albums");
 	ALAssetsLibraryAccessFailureBlock failHandler = ^(NSError *error) {
 		NSLog(@"failed");
@@ -33,16 +38,15 @@
 	ALAssetsLibraryGroupsEnumerationResultsBlock groupsEnumerator = ^(ALAssetsGroup *group, BOOL *stop) {
 		//RCLog(@"%@", group);
         if (group != nil) {
-			CRAlbum *album = [[CRAlbum alloc] init];
+			CRAlbum *album = [[CRAlbum alloc] initWithAssetGroup:group];
 			
-			album.groupRef = group;
-			album.type = 1;
-			album.count = [group numberOfAssets];
+			album.type = PSUSourceTypeAssetsLibrary;
+			album.count = (int)[group numberOfAssets];
 			album.coverUrl = [group valueForProperty:ALAssetsGroupPropertyURL];
 			album.albumId = [group valueForProperty:ALAssetsGroupPropertyPersistentID];
 			album.name = [group valueForProperty:ALAssetsGroupPropertyName];
 			album.coverImage = [UIImage imageWithCGImage:[group posterImage]];
-			[self.albums addObject:album];
+			[_albums addObject:album];
         }
 		else {
 			[self.delegate albumsLoaded:self.albums];
@@ -55,9 +59,10 @@
 	
 }
 
-- (void) requestPhotosForAlbumId:(NSString*)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId {
 	NSLog(@"LIBLoader request photos for album id %@", albumId);
-	[self.photos removeAllObjects];
+	[_photos removeAllObjects];
+	
 	// Search the album with the albumId
 	ALAssetsGroup *groupRef;
 	for (CRAlbum *album in self.albums) {
@@ -76,12 +81,12 @@
 			if (url != nil) {
 				//RCLog(@"%@", url);
 				CRPhoto *cell = [[CRPhoto alloc] init];
-				cell.type = 1;//ISTypeLibrary;
+				cell.type = PSUSourceTypeAssetsLibrary;
 				cell.thumbUrl = url;
 				cell.sourceUrl = url;
 				cell.selected = YES;
 				cell.date = [asset valueForProperty:ALAssetPropertyDate];
-				[self.photos addObject:cell];
+				[_photos addObject:cell];
 			}
         }
 		else {
@@ -92,7 +97,7 @@
 	[groupRef enumerateAssetsUsingBlock:groupEnumerator];
 }
 
-- (void) cancel {
+- (void)cancel {
 	// There's nothing to cancel when enumerating the groups
 }
 

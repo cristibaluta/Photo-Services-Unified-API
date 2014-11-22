@@ -12,7 +12,7 @@
 
 
 // This is already loaded
-- (void) preloadCoverImage {
+- (void)preloadCoverImage {
 	
     if (self.coverImage != nil) {
         [self dispatchLoadComplete];

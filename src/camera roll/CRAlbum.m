@@ -8,16 +8,25 @@
 
 #import "CRAlbum.h"
 
+@interface CRAlbum ()
+@end
+
 @implementation CRAlbum
 
+- (instancetype)initWithAssetGroup:(ALAssetsGroup *)groupRef {
+	self = [super init];
+	if (self) {
+		_groupRef = groupRef;
+	}
+	return self;
+}
 
-// This is already loaded
-- (void) preloadCoverImage {
+- (void)preloadCoverImage {
 	
+	// This is already loaded
     if (self.coverImage != nil) {
         [self dispatchLoadComplete];
     }
-    
 }
 
 
