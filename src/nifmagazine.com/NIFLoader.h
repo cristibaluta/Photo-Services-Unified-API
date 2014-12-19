@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "PSULoader.h"
-#import "PSUAlbum.h"
-#import "CRAlbum.h"
-#import "CRPhoto.h"
-//#import "ISPhotosManager.h"
+#import "NIFAlbum.h"
+#import "NIFPhoto.h"
 
-@interface CRLoader : PSULoader
+@interface NIFLoader : PSULoader
 
 @end

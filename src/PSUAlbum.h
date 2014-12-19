@@ -18,12 +18,12 @@
 @property (nonatomic, weak) id<PSUAlbumDelegate> delegate;
 
 /*!
- The image representative for this album. It is available after is loaded
+ The cover image for this album. It is available after is loaded
  */
 @property (nonatomic) PSUSourceType type;// ISType
 
 /*!
- IndexPath ready to use by a UITableView
+ IndexPath in the UITableView
  */
 @property (nonatomic, copy) NSIndexPath *indexPath;
 

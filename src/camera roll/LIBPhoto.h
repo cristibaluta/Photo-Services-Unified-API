@@ -8,6 +8,6 @@
 
 #import "PSUPhoto.h"
 
-@interface CRPhoto : PSUPhoto
+@interface LIBPhoto : PSUPhoto
 
 @end

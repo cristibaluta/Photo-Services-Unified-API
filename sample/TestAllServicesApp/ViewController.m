@@ -7,9 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "PSUManager.h"
 
-@interface ViewController ()
-
+@interface ViewController () {
+	PSUManager *_photosManager;
+}
 @end
 
 @implementation ViewController
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	_photosManager = [PSUManager sharedManager];
 }
 
 - (void)didReceiveMemoryWarning {

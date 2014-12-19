@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2806FE5F1A205B9B000BAFA1 /* CRAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE301A205B9B000BAFA1 /* CRAlbum.m */; };
-		2806FE601A205B9B000BAFA1 /* CRLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE321A205B9B000BAFA1 /* CRLoader.m */; };
-		2806FE611A205B9B000BAFA1 /* CRPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE341A205B9B000BAFA1 /* CRPhoto.m */; };
+		2806FE5F1A205B9B000BAFA1 /* LIBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE301A205B9B000BAFA1 /* LIBAlbum.m */; };
+		2806FE601A205B9B000BAFA1 /* LIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE321A205B9B000BAFA1 /* LIBLoader.m */; };
+		2806FE611A205B9B000BAFA1 /* LIBPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE341A205B9B000BAFA1 /* LIBPhoto.m */; };
 		2806FE621A205B9B000BAFA1 /* FBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE371A205B9B000BAFA1 /* FBAlbum.m */; };
 		2806FE631A205B9B000BAFA1 /* FBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE391A205B9B000BAFA1 /* FBLoader.m */; };
 		2806FE641A205B9B000BAFA1 /* IGLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE3C1A205B9B000BAFA1 /* IGLoader.m */; };
@@ -50,12 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2806FE2F1A205B9B000BAFA1 /* CRAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRAlbum.h; sourceTree = "<group>"; };
-		2806FE301A205B9B000BAFA1 /* CRAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRAlbum.m; sourceTree = "<group>"; };
-		2806FE311A205B9B000BAFA1 /* CRLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRLoader.h; sourceTree = "<group>"; };
-		2806FE321A205B9B000BAFA1 /* CRLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRLoader.m; sourceTree = "<group>"; };
-		2806FE331A205B9B000BAFA1 /* CRPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRPhoto.h; sourceTree = "<group>"; };
-		2806FE341A205B9B000BAFA1 /* CRPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRPhoto.m; sourceTree = "<group>"; };
+		2806FE2F1A205B9B000BAFA1 /* LIBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBAlbum.h; sourceTree = "<group>"; };
+		2806FE301A205B9B000BAFA1 /* LIBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIBAlbum.m; sourceTree = "<group>"; };
+		2806FE311A205B9B000BAFA1 /* LIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBLoader.h; sourceTree = "<group>"; };
+		2806FE321A205B9B000BAFA1 /* LIBLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIBLoader.m; sourceTree = "<group>"; };
+		2806FE331A205B9B000BAFA1 /* LIBPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBPhoto.h; sourceTree = "<group>"; };
+		2806FE341A205B9B000BAFA1 /* LIBPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIBPhoto.m; sourceTree = "<group>"; };
 		2806FE361A205B9B000BAFA1 /* FBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAlbum.h; sourceTree = "<group>"; };
 		2806FE371A205B9B000BAFA1 /* FBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBAlbum.m; sourceTree = "<group>"; };
 		2806FE381A205B9B000BAFA1 /* FBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoader.h; sourceTree = "<group>"; };
@@ -138,6 +138,8 @@
 				2806FE3A1A205B9B000BAFA1 /* instagram */,
 				2806FE3D1A205B9B000BAFA1 /* nifmagazine.com */,
 				2806FE441A205B9B000BAFA1 /* photosight.ru */,
+				2806FE551A205B9B000BAFA1 /* px500 */,
+				2806FE581A205B9B000BAFA1 /* video */,
 				2806FE4B1A205B9B000BAFA1 /* PSUAlbum.h */,
 				2806FE4C1A205B9B000BAFA1 /* PSUAlbum.m */,
 				2806FE7B1A2066A3000BAFA1 /* PSUEnums.h */,
@@ -149,8 +151,6 @@
 				2806FE521A205B9B000BAFA1 /* PSUManager.m */,
 				2806FE531A205B9B000BAFA1 /* PSUPhoto.h */,
 				2806FE541A205B9B000BAFA1 /* PSUPhoto.m */,
-				2806FE551A205B9B000BAFA1 /* px500 */,
-				2806FE581A205B9B000BAFA1 /* video */,
 				2806FE5D1A205B9B000BAFA1 /* PSUWebPhoto.h */,
 				2806FE5E1A205B9B000BAFA1 /* PSUWebPhoto.m */,
 			);
@@ -161,12 +161,12 @@
 		2806FE2E1A205B9B000BAFA1 /* camera roll */ = {
 			isa = PBXGroup;
 			children = (
-				2806FE2F1A205B9B000BAFA1 /* CRAlbum.h */,
-				2806FE301A205B9B000BAFA1 /* CRAlbum.m */,
-				2806FE311A205B9B000BAFA1 /* CRLoader.h */,
-				2806FE321A205B9B000BAFA1 /* CRLoader.m */,
-				2806FE331A205B9B000BAFA1 /* CRPhoto.h */,
-				2806FE341A205B9B000BAFA1 /* CRPhoto.m */,
+				2806FE2F1A205B9B000BAFA1 /* LIBAlbum.h */,
+				2806FE301A205B9B000BAFA1 /* LIBAlbum.m */,
+				2806FE311A205B9B000BAFA1 /* LIBLoader.h */,
+				2806FE321A205B9B000BAFA1 /* LIBLoader.m */,
+				2806FE331A205B9B000BAFA1 /* LIBPhoto.h */,
+				2806FE341A205B9B000BAFA1 /* LIBPhoto.m */,
 			);
 			path = "camera roll";
 			sourceTree = "<group>";
@@ -429,7 +429,7 @@
 				2806FE711A205B9B000BAFA1 /* VItem.m in Sources */,
 				2806FE671A205B9B000BAFA1 /* NIFPhoto.m in Sources */,
 				2806FE621A205B9B000BAFA1 /* FBAlbum.m in Sources */,
-				2806FE601A205B9B000BAFA1 /* CRLoader.m in Sources */,
+				2806FE601A205B9B000BAFA1 /* LIBLoader.m in Sources */,
 				2806FE6E1A205B9B000BAFA1 /* PSUManager.m in Sources */,
 				284D47DA19F1CB0B00B63D18 /* ViewController.m in Sources */,
 				2806FE681A205B9B000BAFA1 /* SIAlbum.m in Sources */,
@@ -437,9 +437,9 @@
 				284D47D719F1CB0B00B63D18 /* AppDelegate.m in Sources */,
 				2806FE631A205B9B000BAFA1 /* FBLoader.m in Sources */,
 				2806FE721A205B9B000BAFA1 /* VLoader.m in Sources */,
-				2806FE5F1A205B9B000BAFA1 /* CRAlbum.m in Sources */,
+				2806FE5F1A205B9B000BAFA1 /* LIBAlbum.m in Sources */,
 				284D47D419F1CB0B00B63D18 /* main.m in Sources */,
-				2806FE611A205B9B000BAFA1 /* CRPhoto.m in Sources */,
+				2806FE611A205B9B000BAFA1 /* LIBPhoto.m in Sources */,
 				2806FE661A205B9B000BAFA1 /* NIFLoader.m in Sources */,
 				2806FE6A1A205B9B000BAFA1 /* SIPhoto.m in Sources */,
 				2806FE691A205B9B000BAFA1 /* SILoader.m in Sources */,

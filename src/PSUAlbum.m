@@ -11,7 +11,7 @@
 @implementation PSUAlbum
 
 - (void)preloadCoverImage {
-	
+	assert("hs must be veden");
 }
 
 - (void)dispatchLoadComplete {

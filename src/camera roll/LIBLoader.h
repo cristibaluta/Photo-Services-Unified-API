@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "PSULoader.h"
 
-@interface CRLoader : PSULoader
+@interface LIBLoader : PSULoader
 
 @end

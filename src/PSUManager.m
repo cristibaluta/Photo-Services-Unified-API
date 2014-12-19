@@ -7,7 +7,126 @@
 //
 
 #import "PSUManager.h"
+#import "LIBLoader.h"
+#import "FBLoader.h"
+#import "IGLoader.h"
+#import "NIFLoader.h"
+#import "SILoader.h"
+#import "PXLoader.h"
 
-@implementation PSUManager
+@implementation PSUManager {
+	// Services
+	LIBLoader *_libraryLoader;
+	FBLoader *_facebookLoader;
+	IGLoader *_instagramLoader;
+	NIFLoader *_nifLoader;
+	SILoader *_photosightLoader;
+	PXLoader *_pxLoader;
+}
+
++ (instancetype)sharedManager {
+	static PSUManager *_sharedManager = nil;
+	static dispatch_once_t oncePredicate;
+	dispatch_once(&oncePredicate, ^{
+		_sharedManager = [[self alloc] init];
+	});
+	return _sharedManager;
+}
+
+- (void)requestAlbums:(PSUSourceType)type {
+	NSLog(@"ISPhotosManager requestAlbum %i", type);
+	switch (type) {
+		case PSUSourceTypeAssetsLibrary:
+			_libraryLoader = [[LIBLoader alloc] init];
+			_libraryLoader.delegate = self;
+			[_libraryLoader requestAlbums];
+			break;
+			
+		case PSUSourceTypeFacebook:
+			_facebookLoader = [[FBLoader alloc] init];
+			_facebookLoader.delegate = self;
+			[_facebookLoader requestAlbums];
+			break;
+			
+		case PSUSourceTypeInstagram:
+			_instagramLoader = [[IGLoader alloc] init];
+			_instagramLoader.delegate = self;
+			[_instagramLoader requestAlbums];
+			break;
+			
+		case PSUSourceType500Px:
+			_pxLoader = [[PXLoader alloc] init];
+			_pxLoader.delegate = self;
+			[_pxLoader requestAlbums];
+			break;
+	}
+}
+
+- (void)requestPhotosForAlbum:(PSUAlbum *)album {
+	NSLog(@"ISPhotosManager requestPhotos %i", album.type);
+	switch (album.type) {
+			
+		case PSUSourceTypeAssetsLibrary:
+			[_libraryLoader requestPhotosForAlbumId:album.albumId];
+			break;
+			
+		case PSUSourceTypeFacebook:
+			[_facebookLoader requestPhotosForAlbumId:album.albumId];
+			break;
+			
+		case PSUSourceTypeInstagram:
+			[_instagramLoader requestPhotosForAlbumId:album.albumId];
+			break;
+			
+		case PSUSourceType500Px:
+			[_pxLoader requestPhotosForAlbumId:album.albumId];
+			break;
+	}
+}
+
+- (int)numberOfAlbums:(PSUSourceType)type {
+	
+	switch (type) {
+			
+		case PSUSourceTypeAssetsLibrary:
+			return [_libraryLoader.albums count];
+			break;
+			
+		case PSUSourceTypeFacebook:
+			if (_facebookLoader == nil) return -1;
+			return [_facebookLoader.albums count];
+			break;
+			
+		case PSUSourceTypeInstagram:
+			if (_instagramLoader == nil) return -1;
+			return [_instagramLoader.albums count];
+			break;
+			
+		case PSUSourceType500Px:
+			if (_pxLoader == nil) return -1;
+			return [_pxLoader.albums count];
+			break;
+	}
+	return 0;
+}
+
+- (int)numberOfPhotos:(PSUSourceType)type {
+	
+	switch (type) {
+			
+		case PSUSourceTypeAssetsLibrary:
+			return [_libraryLoader.photos count];
+			break;
+			
+		case PSUSourceTypeFacebook:
+			return [_facebookLoader.photos count];
+			break;
+			
+		case PSUSourceTypeInstagram:
+			return [_instagramLoader.photos count];
+			break;
+	}
+	return 0;
+}
 
 @end

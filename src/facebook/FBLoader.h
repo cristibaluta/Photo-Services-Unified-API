@@ -7,15 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FacebookSDK/FacebookSDK.h>
-#import "FBAlbum.h"
-#import "PSUWebPhoto.h"
 #import "PSULoader.h"
-//#import "ISPhotosManager.h"
 
-@interface FBLoader : PSULoader {
-	
-	FBRequest *req;
-}
+@interface FBLoader : PSULoader
 
 @end

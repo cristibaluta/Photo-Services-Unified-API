@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "CRPhoto.h"
+#import "LIBPhoto.h"
 
-@implementation CRPhoto
+@implementation LIBPhoto
 
 - (void)preloadThumbImage {
 	

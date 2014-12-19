@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "CRAlbum.h"
+#import "LIBAlbum.h"
 
-@interface CRAlbum ()
+@interface LIBAlbum ()
 @end
 
-@implementation CRAlbum
+@implementation LIBAlbum
 
 - (instancetype)initWithAssetGroup:(ALAssetsGroup *)groupRef {
 	self = [super init];

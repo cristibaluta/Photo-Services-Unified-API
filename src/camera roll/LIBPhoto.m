@@ -7,9 +7,9 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "CRPhoto.h"
+#import "LIBPhoto.h"
 
-@implementation CRPhoto
+@implementation LIBPhoto
 
 - (void)preloadThumbImage {
 	

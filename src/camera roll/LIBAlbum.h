@@ -10,7 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PSUAlbum.h"
 
-@interface CRAlbum : PSUAlbum
+@interface LIBAlbum : PSUAlbum
 
 - (instancetype)initWithAssetGroup:(ALAssetsGroup *)groupRef;
 

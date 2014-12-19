@@ -6,7 +6,10 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
+#import <FacebookSDK/FacebookSDK.h>
 #import "FBLoader.h"
+#import "FBAlbum.h"
+#import "PSUWebPhoto.h"
 
 @interface FBLoader () {
 	
@@ -36,7 +39,7 @@
 				album.coverUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=album&access_token=%@",
 													   [obj objectForKey:@"cover_photo"],
 													   [[FBSession activeSession] accessToken]]];
-				[self.albums addObject:album];
+				[_albums addObject:album];
 			}
 			
 			[self.delegate albumsLoaded:self.albums];
@@ -46,14 +49,13 @@
 		}
 	};
 	
-	req = [FBRequest requestForGraphPath:@"me/albums"];
-	[req startWithCompletionHandler:completionHandler];
-	
+	_request = [FBRequest requestForGraphPath:@"me/albums"];
+	[_request startWithCompletionHandler:completionHandler];
 }
 
 - (void)requestPhotosForAlbumId:(NSString *)albumId {
 	
-	[self.photos removeAllObjects];
+	[_photos removeAllObjects];
 	//RCLog(@"requestPhotosForAlbumId %@", albumId);
 	id completionHandler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		
@@ -67,15 +69,15 @@
 				photo.sourceUrl = [NSURL URLWithString:[obj objectForKey:@"source"]];
 				photo.selected = YES;
 				//NSString *datestr = [obj objectForKey:@"created_time"];
-				[self.photos addObject:photo];
+				[_photos addObject:photo];
 			}
 			[self.delegate photosLoaded:self.photos];
 		}
 	};
 	
 	NSString *graphPath = [NSString stringWithFormat:@"%@/photos?limit=500", albumId];
-	req = [FBRequest requestForGraphPath:graphPath];
-	[req startWithCompletionHandler:completionHandler];
+	_request = [FBRequest requestForGraphPath:graphPath];
+	[_request startWithCompletionHandler:completionHandler];
 }
 
 - (void)cancel {

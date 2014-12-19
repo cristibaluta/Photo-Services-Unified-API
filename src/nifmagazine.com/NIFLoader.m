@@ -6,20 +6,20 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "CRLoader.h"
+#import "NIFLoader.h"
 
-@interface CRLoader () {
+@interface NIFLoader () {
 	
-	ALAssetsLibrary *_assetslibrary;
+	
 }
 @end
 
-@implementation CRLoader
+@implementation NIFLoader
 
 - (id) init {
 	self = [super init];
 	if (self) {
-		_assetslibrary = [[ALAssetsLibrary alloc] init];
+		
 	}
 	return self;
 }
@@ -49,9 +49,6 @@
 		}
     };
 	
-	[_assetslibrary enumerateGroupsWithTypes:ALAssetsGroupAll
-								 usingBlock:groupsEnumerator
-							   failureBlock:failHandler];
 	
 }
 
@@ -75,7 +72,7 @@
 			NSURL *url = [dict objectForKey:@"public.jpeg"];
 			if (url != nil) {
 				//RCLog(@"%@", url);
-				CRPhoto *cell = [[CRPhoto alloc] init];
+				LIBPhoto *cell = [[LIBPhoto alloc] init];
 				cell.type = 1;//ISTypeLibrary;
 				cell.thumbUrl = url;
 				cell.sourceUrl = url;

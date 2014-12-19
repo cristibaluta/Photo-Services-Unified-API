@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "PSUAlbum.h"
 
-@interface CRAlbum : PSUAlbum
+@interface NIFAlbum : PSUAlbum
 
-@property (nonatomic, strong) ALAssetsGroup *groupRef;
+@property (nonatomic, strong) NSString *groupRef;
+
 @end

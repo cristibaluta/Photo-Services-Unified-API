@@ -6,20 +6,20 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import "CRLoader.h"
+#import "LIBLoader.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PSUAlbum.h"
-#import "CRAlbum.h"
-#import "CRPhoto.h"
+#import "LIBAlbum.h"
+#import "LIBPhoto.h"
 #import "PSUEnums.h"
 
-@interface CRLoader () {
+@interface LIBLoader () {
 	
 	ALAssetsLibrary *_assetslibrary;
 }
 @end
 
-@implementation CRLoader
+@implementation LIBLoader
 
 - (id) init {
 	self = [super init];
@@ -38,7 +38,7 @@
 	ALAssetsLibraryGroupsEnumerationResultsBlock groupsEnumerator = ^(ALAssetsGroup *group, BOOL *stop) {
 		//RCLog(@"%@", group);
         if (group != nil) {
-			CRAlbum *album = [[CRAlbum alloc] initWithAssetGroup:group];
+			LIBAlbum *album = [[LIBAlbum alloc] initWithAssetGroup:group];
 			
 			album.type = PSUSourceTypeAssetsLibrary;
 			album.count = (int)[group numberOfAssets];
@@ -65,7 +65,7 @@
 	
 	// Search the album with the albumId
 	ALAssetsGroup *groupRef;
-	for (CRAlbum *album in self.albums) {
+	for (LIBAlbum *album in self.albums) {
 		if ([albumId isEqualToString:album.albumId]) {
 			groupRef = album.groupRef;
 			break;
@@ -80,7 +80,7 @@
 			NSURL *url = [dict objectForKey:@"public.jpeg"];
 			if (url != nil) {
 				//RCLog(@"%@", url);
-				CRPhoto *cell = [[CRPhoto alloc] init];
+				LIBPhoto *cell = [[LIBPhoto alloc] init];
 				cell.type = PSUSourceTypeAssetsLibrary;
 				cell.thumbUrl = url;
 				cell.sourceUrl = url;
