@@ -19,7 +19,7 @@
 
 @implementation FBLoader
 
-- (void)requestAlbums {
+- (void)requestAlbums:(void (^)(NSArray *))block {
 	
 	id completionHandler = ^(FBRequestConnection *connection, id result, NSError *error) {
 		
@@ -42,10 +42,10 @@
 				[_albums addObject:album];
 			}
 			
-			[self.delegate albumsLoaded:self.albums];
+			block(_albums);
 		}
 		else {
-			[self.delegate albumsLoaded:@[]];
+			block(@[]);
 		}
 	};
 	
@@ -53,7 +53,7 @@
 	[_request startWithCompletionHandler:completionHandler];
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray *))block {
 	
 	[_photos removeAllObjects];
 	//RCLog(@"requestPhotosForAlbumId %@", albumId);
@@ -71,7 +71,7 @@
 				//NSString *datestr = [obj objectForKey:@"created_time"];
 				[_photos addObject:photo];
 			}
-			[self.delegate photosLoaded:self.photos];
+			block(_photos);
 		}
 	};
 	
@@ -84,6 +84,5 @@
 	// There's nothing to cancel when enumerating the groups
 	
 }
-
 
 @end

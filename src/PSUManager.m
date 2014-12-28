@@ -33,58 +33,54 @@
 	return _sharedManager;
 }
 
-- (void)requestAlbums:(PSUSourceType)type {
+- (void)requestAlbums:(PSUSourceType)type completion:(void(^)(NSArray *albums))block {
 	NSLog(@"ISPhotosManager requestAlbum %i", type);
 	switch (type) {
 		case PSUSourceTypeAssetsLibrary:
 			_libraryLoader = [[LIBLoader alloc] init];
-			_libraryLoader.delegate = self;
-			[_libraryLoader requestAlbums];
+			[_libraryLoader requestAlbums:block];
 			break;
 			
 		case PSUSourceTypeFacebook:
 			_facebookLoader = [[FBLoader alloc] init];
-			_facebookLoader.delegate = self;
-			[_facebookLoader requestAlbums];
+			[_facebookLoader requestAlbums:block];
 			break;
 			
 		case PSUSourceTypeInstagram:
 			_instagramLoader = [[IGLoader alloc] init];
-			_instagramLoader.delegate = self;
-			[_instagramLoader requestAlbums];
+			[_instagramLoader requestAlbums:block];
 			break;
 			
 		case PSUSourceType500Px:
 			_pxLoader = [[PXLoader alloc] init];
-			_pxLoader.delegate = self;
-			[_pxLoader requestAlbums];
+			[_pxLoader requestAlbums:block];
 			break;
 	}
 }
 
-- (void)requestPhotosForAlbum:(PSUAlbum *)album {
+- (void)requestPhotosForAlbum:(PSUAlbum *)album completion:(void(^)(NSArray *photos))block {
 	NSLog(@"ISPhotosManager requestPhotos %i", album.type);
 	switch (album.type) {
 			
 		case PSUSourceTypeAssetsLibrary:
-			[_libraryLoader requestPhotosForAlbumId:album.albumId];
+			[_libraryLoader requestPhotosForAlbumId:album.albumId completion:block];
 			break;
 			
 		case PSUSourceTypeFacebook:
-			[_facebookLoader requestPhotosForAlbumId:album.albumId];
+			[_facebookLoader requestPhotosForAlbumId:album.albumId completion:block];
 			break;
 			
 		case PSUSourceTypeInstagram:
-			[_instagramLoader requestPhotosForAlbumId:album.albumId];
+			[_instagramLoader requestPhotosForAlbumId:album.albumId completion:block];
 			break;
 			
 		case PSUSourceType500Px:
-			[_pxLoader requestPhotosForAlbumId:album.albumId];
+			[_pxLoader requestPhotosForAlbumId:album.albumId completion:block];
 			break;
 	}
 }
 
-- (int)numberOfAlbums:(PSUSourceType)type {
+- (NSUInteger)numberOfAlbums:(PSUSourceType)type {
 	
 	switch (type) {
 			
@@ -110,7 +106,7 @@
 	return 0;
 }
 
-- (int)numberOfPhotos:(PSUSourceType)type {
+- (NSUInteger)numberOfPhotos:(PSUSourceType)type {
 	
 	switch (type) {
 			

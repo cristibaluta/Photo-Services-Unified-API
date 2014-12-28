@@ -16,7 +16,7 @@
 
 - (void)requestAlbums:(PSUSourceType)type completion:(void(^)(NSArray *albums))block;
 - (void)requestPhotosForAlbum:(PSUAlbum *)album completion:(void(^)(NSArray *photos))block;
-- (int)numberOfAlbums:(PSUSourceType)type;
-- (int)numberOfPhotosForAlbum:(PSUAlbum *)album;
+- (NSUInteger)numberOfAlbums:(PSUSourceType)type;
+- (NSUInteger)numberOfPhotosForAlbum:(PSUAlbum *)album;
 
 @end

@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "PSUPhoto.h"
 
-@interface CRPhoto : PSUPhoto
+@interface SIPhoto : PSUPhoto
 
 @end

@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import <PXAPI/PXAPI.h>
+#import "PXAPI.h"
 #import "PXLoader.h"
 #import "PSUAlbum.h"
 #import "PSUWebPhoto.h"
 
 @implementation PXLoader
 
-- (void)requestAlbums {
+- (void)requestAlbums:(void (^)(NSArray *))block {
 	
 	NSArray *ids = [NSArray arrayWithObjects:@"0", @"1", @"2", nil];
 	NSArray *titles = [NSArray arrayWithObjects:@"My photos", @"Friends", @"Favourites", nil];
@@ -28,11 +28,10 @@
 		[_albums addObject:album];
 	}
 	
-	[self.delegate albumsLoaded:self.albums];
-	
+	block(_albums);
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray *))block {
 	
 	[_photos removeAllObjects];
 	NSUInteger uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"px_user_id"];
@@ -57,7 +56,7 @@
 				[_photos addObject:photo];
 			}
 		}
-		[self.delegate photosLoaded:self.photos];
+		block(_photos);
 	}];
 }
 

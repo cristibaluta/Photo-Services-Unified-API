@@ -12,9 +12,9 @@
 #import "LIBAlbum.h"
 #import "LIBPhoto.h"
 #import "PSUEnums.h"
+#import "RCLog.h"
 
 @interface LIBLoader () {
-	
 	ALAssetsLibrary *_assetslibrary;
 }
 @end
@@ -29,10 +29,11 @@
 	return self;
 }
 
-- (void)requestAlbums {
-	NSLog(@"LIBLoader request albums");
+- (void)requestAlbums:(void(^)(NSArray *albums))block {
+	
 	ALAssetsLibraryAccessFailureBlock failHandler = ^(NSError *error) {
 		NSLog(@"failed");
+		block(nil);
     };
 	
 	ALAssetsLibraryGroupsEnumerationResultsBlock groupsEnumerator = ^(ALAssetsGroup *group, BOOL *stop) {
@@ -47,9 +48,10 @@
 			album.name = [group valueForProperty:ALAssetsGroupPropertyName];
 			album.coverImage = [UIImage imageWithCGImage:[group posterImage]];
 			[_albums addObject:album];
+			RCLogO(album.name);
         }
 		else {
-			[self.delegate albumsLoaded:self.albums];
+			block(_albums);
 		}
     };
 	
@@ -59,7 +61,7 @@
 	
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray *photos))block {
 	NSLog(@"LIBLoader request photos for album id %@", albumId);
 	[_photos removeAllObjects];
 	
@@ -90,7 +92,7 @@
 			}
         }
 		else {
-			[self.delegate photosLoaded:self.photos];
+			block(_photos);
 		}
     };
 	

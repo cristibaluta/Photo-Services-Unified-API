@@ -8,19 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol PSULoaderDelegate <NSObject>
-
-- (void)albumsLoaded:(NSArray *)albums;
-- (void)photosLoaded:(NSArray *)albums;
-
-@end
-
 @interface PSULoader : NSObject {
 	NSMutableArray *_albums;// PSUAlbum objects
 	NSMutableArray *_photos;
 }
-
-@property (nonatomic, weak) id<PSULoaderDelegate> delegate;
 
 /*!
  PSUAlbum objects
@@ -32,8 +23,8 @@
  */
 @property (nonatomic, readonly) NSArray *photos;
 
-- (void)requestAlbums;
-- (void)requestPhotosForAlbumId:(NSString *)albumId;
+- (void)requestAlbums:(void(^)(NSArray *albums))block;
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray *photos))block;
 - (void)cancel;
 
 @end

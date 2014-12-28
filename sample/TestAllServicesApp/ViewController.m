@@ -20,11 +20,9 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	_photosManager = [PSUManager sharedManager];
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	[_photosManager requestAlbums:PSUSourceTypeAssetsLibrary completion:^(NSArray *albums) {
+		NSLog(@"%@", albums);
+	}];
 }
 
 @end

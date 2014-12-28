@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2802D9A81A4ADD3F00AFE6B9 /* IGRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9A51A4ADD3F00AFE6B9 /* IGRequest.m */; };
+		2802D9A91A4ADD3F00AFE6B9 /* Instagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9A71A4ADD3F00AFE6B9 /* Instagram.m */; };
+		2802D9E11A4AE97000AFE6B9 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9D21A4AE97000AFE6B9 /* NSData+Base64.m */; };
+		2802D9E21A4AE97000AFE6B9 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9D41A4AE97000AFE6B9 /* OAuth+Additions.m */; };
+		2802D9E31A4AE97000AFE6B9 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9D61A4AE97000AFE6B9 /* OAuthCore.m */; };
+		2802D9E41A4AE97000AFE6B9 /* PXAPIHelper+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9DA1A4AE97000AFE6B9 /* PXAPIHelper+Auth.m */; };
+		2802D9E51A4AE97000AFE6B9 /* PXAPIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9DC1A4AE97000AFE6B9 /* PXAPIHelper.m */; };
+		2802D9E61A4AE97000AFE6B9 /* PXRequest+Creation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9DE1A4AE97000AFE6B9 /* PXRequest+Creation.m */; };
+		2802D9E71A4AE97000AFE6B9 /* PXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9E01A4AE97000AFE6B9 /* PXRequest.m */; };
 		2806FE5F1A205B9B000BAFA1 /* LIBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE301A205B9B000BAFA1 /* LIBAlbum.m */; };
 		2806FE601A205B9B000BAFA1 /* LIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE321A205B9B000BAFA1 /* LIBLoader.m */; };
 		2806FE611A205B9B000BAFA1 /* LIBPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE341A205B9B000BAFA1 /* LIBPhoto.m */; };
@@ -25,8 +34,6 @@
 		2806FE6E1A205B9B000BAFA1 /* PSUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE521A205B9B000BAFA1 /* PSUManager.m */; };
 		2806FE6F1A205B9B000BAFA1 /* PSUPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE541A205B9B000BAFA1 /* PSUPhoto.m */; };
 		2806FE701A205B9B000BAFA1 /* PXLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE571A205B9B000BAFA1 /* PXLoader.m */; };
-		2806FE711A205B9B000BAFA1 /* VItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE5A1A205B9B000BAFA1 /* VItem.m */; };
-		2806FE721A205B9B000BAFA1 /* VLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE5C1A205B9B000BAFA1 /* VLoader.m */; };
 		2806FE731A205B9B000BAFA1 /* PSUWebPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE5E1A205B9B000BAFA1 /* PSUWebPhoto.m */; };
 		2806FE771A205F17000BAFA1 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2806FE761A205F17000BAFA1 /* FacebookSDK.framework */; };
 		2806FE7A1A205F39000BAFA1 /* RCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE791A205F39000BAFA1 /* RCLog.m */; };
@@ -50,6 +57,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2802D9A31A4ADD3F00AFE6B9 /* IGConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGConnect.h; sourceTree = "<group>"; };
+		2802D9A41A4ADD3F00AFE6B9 /* IGRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGRequest.h; sourceTree = "<group>"; };
+		2802D9A51A4ADD3F00AFE6B9 /* IGRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGRequest.m; sourceTree = "<group>"; };
+		2802D9A61A4ADD3F00AFE6B9 /* Instagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instagram.h; sourceTree = "<group>"; };
+		2802D9A71A4ADD3F00AFE6B9 /* Instagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instagram.m; sourceTree = "<group>"; };
+		2802D9D11A4AE97000AFE6B9 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		2802D9D21A4AE97000AFE6B9 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		2802D9D31A4AE97000AFE6B9 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		2802D9D41A4AE97000AFE6B9 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		2802D9D51A4AE97000AFE6B9 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		2802D9D61A4AE97000AFE6B9 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		2802D9D71A4AE97000AFE6B9 /* PXAPI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PXAPI-Prefix.pch"; sourceTree = "<group>"; };
+		2802D9D81A4AE97000AFE6B9 /* PXAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAPI.h; sourceTree = "<group>"; };
+		2802D9D91A4AE97000AFE6B9 /* PXAPIHelper+Auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PXAPIHelper+Auth.h"; sourceTree = "<group>"; };
+		2802D9DA1A4AE97000AFE6B9 /* PXAPIHelper+Auth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PXAPIHelper+Auth.m"; sourceTree = "<group>"; };
+		2802D9DB1A4AE97000AFE6B9 /* PXAPIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAPIHelper.h; sourceTree = "<group>"; };
+		2802D9DC1A4AE97000AFE6B9 /* PXAPIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAPIHelper.m; sourceTree = "<group>"; };
+		2802D9DD1A4AE97000AFE6B9 /* PXRequest+Creation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PXRequest+Creation.h"; sourceTree = "<group>"; };
+		2802D9DE1A4AE97000AFE6B9 /* PXRequest+Creation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PXRequest+Creation.m"; sourceTree = "<group>"; };
+		2802D9DF1A4AE97000AFE6B9 /* PXRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXRequest.h; sourceTree = "<group>"; };
+		2802D9E01A4AE97000AFE6B9 /* PXRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXRequest.m; sourceTree = "<group>"; };
 		2806FE2F1A205B9B000BAFA1 /* LIBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBAlbum.h; sourceTree = "<group>"; };
 		2806FE301A205B9B000BAFA1 /* LIBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIBAlbum.m; sourceTree = "<group>"; };
 		2806FE311A205B9B000BAFA1 /* LIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBLoader.h; sourceTree = "<group>"; };
@@ -86,10 +114,6 @@
 		2806FE541A205B9B000BAFA1 /* PSUPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSUPhoto.m; sourceTree = "<group>"; };
 		2806FE561A205B9B000BAFA1 /* PXLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXLoader.h; sourceTree = "<group>"; };
 		2806FE571A205B9B000BAFA1 /* PXLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXLoader.m; sourceTree = "<group>"; };
-		2806FE591A205B9B000BAFA1 /* VItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VItem.h; sourceTree = "<group>"; };
-		2806FE5A1A205B9B000BAFA1 /* VItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VItem.m; sourceTree = "<group>"; };
-		2806FE5B1A205B9B000BAFA1 /* VLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VLoader.h; sourceTree = "<group>"; };
-		2806FE5C1A205B9B000BAFA1 /* VLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VLoader.m; sourceTree = "<group>"; };
 		2806FE5D1A205B9B000BAFA1 /* PSUWebPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSUWebPhoto.h; sourceTree = "<group>"; };
 		2806FE5E1A205B9B000BAFA1 /* PSUWebPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSUWebPhoto.m; sourceTree = "<group>"; };
 		2806FE761A205F17000BAFA1 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../vendor/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -130,6 +154,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2802D9A21A4ADD3F00AFE6B9 /* instagram-ios-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				2802D9A31A4ADD3F00AFE6B9 /* IGConnect.h */,
+				2802D9A41A4ADD3F00AFE6B9 /* IGRequest.h */,
+				2802D9A51A4ADD3F00AFE6B9 /* IGRequest.m */,
+				2802D9A61A4ADD3F00AFE6B9 /* Instagram.h */,
+				2802D9A71A4ADD3F00AFE6B9 /* Instagram.m */,
+			);
+			name = "instagram-ios-sdk";
+			path = "../../../instagram-ios-sdk/instagram-ios-sdk/instagram-ios-sdk";
+			sourceTree = "<group>";
+		};
+		2802D9CF1A4AE97000AFE6B9 /* PXAPI */ = {
+			isa = PBXGroup;
+			children = (
+				2802D9D01A4AE97000AFE6B9 /* ABOAuthCore */,
+				2802D9D71A4AE97000AFE6B9 /* PXAPI-Prefix.pch */,
+				2802D9D81A4AE97000AFE6B9 /* PXAPI.h */,
+				2802D9D91A4AE97000AFE6B9 /* PXAPIHelper+Auth.h */,
+				2802D9DA1A4AE97000AFE6B9 /* PXAPIHelper+Auth.m */,
+				2802D9DB1A4AE97000AFE6B9 /* PXAPIHelper.h */,
+				2802D9DC1A4AE97000AFE6B9 /* PXAPIHelper.m */,
+				2802D9DD1A4AE97000AFE6B9 /* PXRequest+Creation.h */,
+				2802D9DE1A4AE97000AFE6B9 /* PXRequest+Creation.m */,
+				2802D9DF1A4AE97000AFE6B9 /* PXRequest.h */,
+				2802D9E01A4AE97000AFE6B9 /* PXRequest.m */,
+			);
+			name = PXAPI;
+			path = "../../../500px-iOS-api/PXAPI";
+			sourceTree = "<group>";
+		};
+		2802D9D01A4AE97000AFE6B9 /* ABOAuthCore */ = {
+			isa = PBXGroup;
+			children = (
+				2802D9D11A4AE97000AFE6B9 /* NSData+Base64.h */,
+				2802D9D21A4AE97000AFE6B9 /* NSData+Base64.m */,
+				2802D9D31A4AE97000AFE6B9 /* OAuth+Additions.h */,
+				2802D9D41A4AE97000AFE6B9 /* OAuth+Additions.m */,
+				2802D9D51A4AE97000AFE6B9 /* OAuthCore.h */,
+				2802D9D61A4AE97000AFE6B9 /* OAuthCore.m */,
+			);
+			path = ABOAuthCore;
+			sourceTree = "<group>";
+		};
 		2806FE2D1A205B9B000BAFA1 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +208,6 @@
 				2806FE3D1A205B9B000BAFA1 /* nifmagazine.com */,
 				2806FE441A205B9B000BAFA1 /* photosight.ru */,
 				2806FE551A205B9B000BAFA1 /* px500 */,
-				2806FE581A205B9B000BAFA1 /* video */,
 				2806FE4B1A205B9B000BAFA1 /* PSUAlbum.h */,
 				2806FE4C1A205B9B000BAFA1 /* PSUAlbum.m */,
 				2806FE7B1A2066A3000BAFA1 /* PSUEnums.h */,
@@ -226,17 +294,6 @@
 			path = px500;
 			sourceTree = "<group>";
 		};
-		2806FE581A205B9B000BAFA1 /* video */ = {
-			isa = PBXGroup;
-			children = (
-				2806FE591A205B9B000BAFA1 /* VItem.h */,
-				2806FE5A1A205B9B000BAFA1 /* VItem.m */,
-				2806FE5B1A205B9B000BAFA1 /* VLoader.h */,
-				2806FE5C1A205B9B000BAFA1 /* VLoader.m */,
-			);
-			path = video;
-			sourceTree = "<group>";
-		};
 		2806FE741A205EED000BAFA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +306,8 @@
 		2806FE751A205F01000BAFA1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2802D9CF1A4AE97000AFE6B9 /* PXAPI */,
+				2802D9A21A4ADD3F00AFE6B9 /* instagram-ios-sdk */,
 				2806FE781A205F39000BAFA1 /* RCLog.h */,
 				2806FE791A205F39000BAFA1 /* RCLog.m */,
 				2806FE761A205F17000BAFA1 /* FacebookSDK.framework */,
@@ -425,30 +484,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				2806FE701A205B9B000BAFA1 /* PXLoader.m in Sources */,
+				2802D9E41A4AE97000AFE6B9 /* PXAPIHelper+Auth.m in Sources */,
 				2806FE7A1A205F39000BAFA1 /* RCLog.m in Sources */,
-				2806FE711A205B9B000BAFA1 /* VItem.m in Sources */,
 				2806FE671A205B9B000BAFA1 /* NIFPhoto.m in Sources */,
 				2806FE621A205B9B000BAFA1 /* FBAlbum.m in Sources */,
+				2802D9A81A4ADD3F00AFE6B9 /* IGRequest.m in Sources */,
+				2802D9E31A4AE97000AFE6B9 /* OAuthCore.m in Sources */,
 				2806FE601A205B9B000BAFA1 /* LIBLoader.m in Sources */,
 				2806FE6E1A205B9B000BAFA1 /* PSUManager.m in Sources */,
+				2802D9E51A4AE97000AFE6B9 /* PXAPIHelper.m in Sources */,
 				284D47DA19F1CB0B00B63D18 /* ViewController.m in Sources */,
 				2806FE681A205B9B000BAFA1 /* SIAlbum.m in Sources */,
 				2806FE641A205B9B000BAFA1 /* IGLoader.m in Sources */,
 				284D47D719F1CB0B00B63D18 /* AppDelegate.m in Sources */,
+				2802D9E61A4AE97000AFE6B9 /* PXRequest+Creation.m in Sources */,
 				2806FE631A205B9B000BAFA1 /* FBLoader.m in Sources */,
-				2806FE721A205B9B000BAFA1 /* VLoader.m in Sources */,
 				2806FE5F1A205B9B000BAFA1 /* LIBAlbum.m in Sources */,
 				284D47D419F1CB0B00B63D18 /* main.m in Sources */,
 				2806FE611A205B9B000BAFA1 /* LIBPhoto.m in Sources */,
+				2802D9E71A4AE97000AFE6B9 /* PXRequest.m in Sources */,
+				2802D9E11A4AE97000AFE6B9 /* NSData+Base64.m in Sources */,
 				2806FE661A205B9B000BAFA1 /* NIFLoader.m in Sources */,
 				2806FE6A1A205B9B000BAFA1 /* SIPhoto.m in Sources */,
 				2806FE691A205B9B000BAFA1 /* SILoader.m in Sources */,
 				2806FE6B1A205B9B000BAFA1 /* PSUAlbum.m in Sources */,
+				2802D9E21A4AE97000AFE6B9 /* OAuth+Additions.m in Sources */,
 				2806FE651A205B9B000BAFA1 /* NIFAlbum.m in Sources */,
 				2806FE6D1A205B9B000BAFA1 /* PSULoginManager.m in Sources */,
 				2806FE731A205B9B000BAFA1 /* PSUWebPhoto.m in Sources */,
 				2806FE6C1A205B9B000BAFA1 /* PSULoader.m in Sources */,
 				2806FE6F1A205B9B000BAFA1 /* PSUPhoto.m in Sources */,
+				2802D9A91A4ADD3F00AFE6B9 /* Instagram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +644,9 @@
 				);
 				INFOPLIST_FILE = TestAllServicesApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Debug;
 		};
@@ -592,7 +660,9 @@
 				);
 				INFOPLIST_FILE = TestAllServicesApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 			};
 			name = Release;
 		};

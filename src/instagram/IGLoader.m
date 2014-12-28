@@ -11,9 +11,14 @@
 #import "PSUWebPhoto.h"
 #import "PSUEnums.h"
 
+@interface IGLoader() {
+	
+}
+
+@end
 @implementation IGLoader
 
-- (void)requestAlbums {
+- (void)requestAlbums:(void (^)(NSArray *))block {
 	
 	NSArray *methods = [NSArray arrayWithObjects:@"/users/self/feed", @"/users/self/media/recent", @"/users/self/media/liked", @"/media/popular", nil];
 	NSArray *titles = [NSArray arrayWithObjects:@"My feed", @"My photos", @"Photos that i liked", @"Popular", nil];
@@ -28,31 +33,30 @@
 		[_albums addObject:album];
 	}
 	
-	[self.delegate albumsLoaded:self.albums];
+	block(_albums);
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray *))block {
 	
 	[_photos removeAllObjects];
 	NSLog(@"requestPhotosForAlbumId %@", albumId);
 	
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:albumId, @"method", @"-1", @"count", nil];
-    [app.login.instagram requestWithParams:params delegate:self];
+//    [app.login.instagram requestWithParams:params delegate:self];
 }
-
 
 
 #pragma mark - IGRequestDelegate
 
 - (void)request:(IGRequest *)request didFailWithError:(NSError *)error {
-    RCLog(@"Instagram did fail: %@", error);
-    
+//    RCLog(@"Instagram did fail: %@", error);
+	
 }
 
 - (void)request:(IGRequest *)request didLoad:(id)result {
     //RCLog(@"Instagram did load: %@", result);
     NSArray *data = (NSArray*)[result objectForKey:@"data"];
-	RCLog(@"did load %i", [data count]);
+//	RCLog(@"did load %i", [data count]);
 	for (id obj in data) {
 		PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
 		NSDictionary *images = [obj objectForKey:@"images"];
@@ -63,11 +67,10 @@
 		photo.selected = YES;
 		NSString *timestamp = [obj objectForKey:@"created_time"];
 		photo.date = [NSDate dateWithTimeIntervalSince1970:[timestamp integerValue]];
-		[self.photos addObject:photo];
+//		[self.photos addObject:photo];
 	}
 	
-    [self.delegate photosLoaded:self.photos];
+//    block(_photos);
 }
-
 
 @end

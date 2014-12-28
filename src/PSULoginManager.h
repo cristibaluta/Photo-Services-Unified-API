@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <FacebookSDK/FacebookSDK.h>
-#import <PXAPI/PXAPI.h>
+#import "PXAPI.h"
 #import "IGConnect.h"
+#import "PSUEnums.h"
 
 #define PX_CONSUMER_KEY @"oRhd5r3iEcGmvgxuSP4rOus3nQit9XoJmJm3o57G"
 #define PX_CONSUMER_SECRET @"F5llLjIbcQnMahOT927qtG8CCcsOysKYtVVh7TwE"
@@ -17,23 +18,21 @@
 @protocol PSULoginDelegate <NSObject>
 
 @required
-- (void)loginComplete:(ImageSourceType)type;
-- (void)loginError:(ImageSourceType)type;
+- (void)loginComplete:(PSUSourceType)type;
+- (void)loginError:(PSUSourceType)type;
 
 @end
 
 @interface PSULoginManager : NSObject
 
-+ (instancetype)sharedManager;
-
 @property (strong, nonatomic) id<PSULoginDelegate> delegate;
-@property (strong, nonatomic) FBSession *session;
-@property (strong, nonatomic) Instagram *instagram;
-@property (strong, nonatomic) PXRequest *px500;
+
++ (instancetype)sharedManager;
 
 - (void)activate;
 - (void)deactivate;
 - (BOOL)handleOpenURL:(NSURL *)url;
+
 - (void)login:(PSUSourceType)type;
 - (BOOL)isLoggedIn:(PSUSourceType)type;
 

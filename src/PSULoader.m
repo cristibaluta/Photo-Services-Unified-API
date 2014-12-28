@@ -24,11 +24,11 @@
 
 // Override this methods
 
-- (void)requestAlbums {
+- (void)requestAlbums:(void(^)(NSArray *albums))block {
 	
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray *photos))block {
 	
 }
 
