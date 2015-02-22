@@ -16,6 +16,16 @@
 		2802D9E51A4AE97000AFE6B9 /* PXAPIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9DC1A4AE97000AFE6B9 /* PXAPIHelper.m */; };
 		2802D9E61A4AE97000AFE6B9 /* PXRequest+Creation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9DE1A4AE97000AFE6B9 /* PXRequest+Creation.m */; };
 		2802D9E71A4AE97000AFE6B9 /* PXRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9E01A4AE97000AFE6B9 /* PXRequest.m */; };
+		2802D9ED1A509B4700AFE6B9 /* ISCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9EA1A509B4700AFE6B9 /* ISCollectionCell.m */; };
+		2802D9EE1A509B4700AFE6B9 /* ISTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2802D9EC1A509B4700AFE6B9 /* ISTableViewCell.m */; };
+		2802D9F71A51581000AFE6B9 /* CellHeaderFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9EF1A51581000AFE6B9 /* CellHeaderFacebook.png */; };
+		2802D9F81A51581000AFE6B9 /* CellHeaderFacebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F01A51581000AFE6B9 /* CellHeaderFacebook@2x.png */; };
+		2802D9F91A51581000AFE6B9 /* CellHeaderFolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F11A51581000AFE6B9 /* CellHeaderFolder.png */; };
+		2802D9FA1A51581000AFE6B9 /* CellHeaderFolder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F21A51581000AFE6B9 /* CellHeaderFolder@2x.png */; };
+		2802D9FB1A51581000AFE6B9 /* CellHeaderInstagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F31A51581000AFE6B9 /* CellHeaderInstagram.png */; };
+		2802D9FC1A51581000AFE6B9 /* CellHeaderInstagram@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F41A51581000AFE6B9 /* CellHeaderInstagram@2x.png */; };
+		2802D9FD1A51581000AFE6B9 /* CellHeaderPx500.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F51A51581000AFE6B9 /* CellHeaderPx500.png */; };
+		2802D9FE1A51581000AFE6B9 /* CellHeaderPx500@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2802D9F61A51581000AFE6B9 /* CellHeaderPx500@2x.png */; };
 		2806FE5F1A205B9B000BAFA1 /* LIBAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE301A205B9B000BAFA1 /* LIBAlbum.m */; };
 		2806FE601A205B9B000BAFA1 /* LIBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE321A205B9B000BAFA1 /* LIBLoader.m */; };
 		2806FE611A205B9B000BAFA1 /* LIBPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 2806FE341A205B9B000BAFA1 /* LIBPhoto.m */; };
@@ -78,6 +88,18 @@
 		2802D9DE1A4AE97000AFE6B9 /* PXRequest+Creation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PXRequest+Creation.m"; sourceTree = "<group>"; };
 		2802D9DF1A4AE97000AFE6B9 /* PXRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXRequest.h; sourceTree = "<group>"; };
 		2802D9E01A4AE97000AFE6B9 /* PXRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXRequest.m; sourceTree = "<group>"; };
+		2802D9E91A509B4700AFE6B9 /* ISCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISCollectionCell.h; sourceTree = "<group>"; };
+		2802D9EA1A509B4700AFE6B9 /* ISCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISCollectionCell.m; sourceTree = "<group>"; };
+		2802D9EB1A509B4700AFE6B9 /* ISTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISTableViewCell.h; sourceTree = "<group>"; };
+		2802D9EC1A509B4700AFE6B9 /* ISTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISTableViewCell.m; sourceTree = "<group>"; };
+		2802D9EF1A51581000AFE6B9 /* CellHeaderFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellHeaderFacebook.png; sourceTree = "<group>"; };
+		2802D9F01A51581000AFE6B9 /* CellHeaderFacebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellHeaderFacebook@2x.png"; sourceTree = "<group>"; };
+		2802D9F11A51581000AFE6B9 /* CellHeaderFolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellHeaderFolder.png; sourceTree = "<group>"; };
+		2802D9F21A51581000AFE6B9 /* CellHeaderFolder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellHeaderFolder@2x.png"; sourceTree = "<group>"; };
+		2802D9F31A51581000AFE6B9 /* CellHeaderInstagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellHeaderInstagram.png; sourceTree = "<group>"; };
+		2802D9F41A51581000AFE6B9 /* CellHeaderInstagram@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellHeaderInstagram@2x.png"; sourceTree = "<group>"; };
+		2802D9F51A51581000AFE6B9 /* CellHeaderPx500.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellHeaderPx500.png; sourceTree = "<group>"; };
+		2802D9F61A51581000AFE6B9 /* CellHeaderPx500@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellHeaderPx500@2x.png"; sourceTree = "<group>"; };
 		2806FE2F1A205B9B000BAFA1 /* LIBAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBAlbum.h; sourceTree = "<group>"; };
 		2806FE301A205B9B000BAFA1 /* LIBAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LIBAlbum.m; sourceTree = "<group>"; };
 		2806FE311A205B9B000BAFA1 /* LIBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIBLoader.h; sourceTree = "<group>"; };
@@ -299,6 +321,10 @@
 			children = (
 				284D47DB19F1CB0B00B63D18 /* Main.storyboard */,
 				284D47E019F1CB0B00B63D18 /* LaunchScreen.xib */,
+				2802D9E91A509B4700AFE6B9 /* ISCollectionCell.h */,
+				2802D9EA1A509B4700AFE6B9 /* ISCollectionCell.m */,
+				2802D9EB1A509B4700AFE6B9 /* ISTableViewCell.h */,
+				2802D9EC1A509B4700AFE6B9 /* ISTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -352,6 +378,14 @@
 		284D47D119F1CB0B00B63D18 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2802D9EF1A51581000AFE6B9 /* CellHeaderFacebook.png */,
+				2802D9F01A51581000AFE6B9 /* CellHeaderFacebook@2x.png */,
+				2802D9F11A51581000AFE6B9 /* CellHeaderFolder.png */,
+				2802D9F21A51581000AFE6B9 /* CellHeaderFolder@2x.png */,
+				2802D9F31A51581000AFE6B9 /* CellHeaderInstagram.png */,
+				2802D9F41A51581000AFE6B9 /* CellHeaderInstagram@2x.png */,
+				2802D9F51A51581000AFE6B9 /* CellHeaderPx500.png */,
+				2802D9F61A51581000AFE6B9 /* CellHeaderPx500@2x.png */,
 				284D47D219F1CB0B00B63D18 /* Info.plist */,
 				284D47D319F1CB0B00B63D18 /* main.m */,
 			);
@@ -463,9 +497,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2802D9F91A51581000AFE6B9 /* CellHeaderFolder.png in Resources */,
+				2802D9FB1A51581000AFE6B9 /* CellHeaderInstagram.png in Resources */,
+				2802D9FD1A51581000AFE6B9 /* CellHeaderPx500.png in Resources */,
+				2802D9F71A51581000AFE6B9 /* CellHeaderFacebook.png in Resources */,
+				2802D9F81A51581000AFE6B9 /* CellHeaderFacebook@2x.png in Resources */,
 				284D47DD19F1CB0B00B63D18 /* Main.storyboard in Resources */,
 				284D47E219F1CB0B00B63D18 /* LaunchScreen.xib in Resources */,
+				2802D9FA1A51581000AFE6B9 /* CellHeaderFolder@2x.png in Resources */,
+				2802D9FC1A51581000AFE6B9 /* CellHeaderInstagram@2x.png in Resources */,
 				284D47DF19F1CB0B00B63D18 /* Images.xcassets in Resources */,
+				2802D9FE1A51581000AFE6B9 /* CellHeaderPx500@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +540,7 @@
 				2806FE641A205B9B000BAFA1 /* IGLoader.m in Sources */,
 				284D47D719F1CB0B00B63D18 /* AppDelegate.m in Sources */,
 				2802D9E61A4AE97000AFE6B9 /* PXRequest+Creation.m in Sources */,
+				2802D9EE1A509B4700AFE6B9 /* ISTableViewCell.m in Sources */,
 				2806FE631A205B9B000BAFA1 /* FBLoader.m in Sources */,
 				2806FE5F1A205B9B000BAFA1 /* LIBAlbum.m in Sources */,
 				284D47D419F1CB0B00B63D18 /* main.m in Sources */,
@@ -511,6 +554,7 @@
 				2802D9E21A4AE97000AFE6B9 /* OAuth+Additions.m in Sources */,
 				2806FE651A205B9B000BAFA1 /* NIFAlbum.m in Sources */,
 				2806FE6D1A205B9B000BAFA1 /* PSULoginManager.m in Sources */,
+				2802D9ED1A509B4700AFE6B9 /* ISCollectionCell.m in Sources */,
 				2806FE731A205B9B000BAFA1 /* PSUWebPhoto.m in Sources */,
 				2806FE6C1A205B9B000BAFA1 /* PSULoader.m in Sources */,
 				2806FE6F1A205B9B000BAFA1 /* PSUPhoto.m in Sources */,
