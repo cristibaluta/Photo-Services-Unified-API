@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FacebookSDK/FacebookSDK.h>
-#import "PXAPI.h"
-#import "IGConnect.h"
 #import "PSUEnums.h"
 
 #define PX_CONSUMER_KEY @"oRhd5r3iEcGmvgxuSP4rOus3nQit9XoJmJm3o57G"
@@ -31,7 +28,10 @@
 
 - (void)activate;
 - (void)deactivate;
-- (BOOL)handleOpenURL:(NSURL *)url;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
 
 - (void)login:(PSUSourceType)type;
 - (BOOL)isLoggedIn:(PSUSourceType)type;

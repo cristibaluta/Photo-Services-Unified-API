@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "FBLoader.h"
 #import "FBAlbum.h"
 #import "PSUWebPhoto.h"
 
 @interface FBLoader () {
 	
-	FBRequest *_request;
+	FBSDKGraphRequest *_request;
 }
 @end
 
@@ -21,7 +21,7 @@
 
 - (void)requestAlbums:(void (^)(NSArray *))block {
 	
-	id completionHandler = ^(FBRequestConnection *connection, id result, NSError *error) {
+	id completionHandler = ^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 		
 		if (result != nil) {
 			NSLog(@"%@", result);
@@ -38,7 +38,7 @@
 				album.albumId = [obj objectForKey:@"id"];
 				album.coverUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=album&access_token=%@",
 													   [obj objectForKey:@"cover_photo"],
-													   [[FBSession activeSession] accessToken]]];
+													   [FBSDKAccessToken currentAccessToken]]];
 				[_albums addObject:album];
 			}
 			
@@ -49,7 +49,7 @@
 		}
 	};
 	
-	_request = [FBRequest requestForGraphPath:@"me/albums"];
+	_request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me/albums" parameters:nil];
 	[_request startWithCompletionHandler:completionHandler];
 }
 
@@ -57,7 +57,7 @@
 	
 	[_photos removeAllObjects];
 	//RCLog(@"requestPhotosForAlbumId %@", albumId);
-	id completionHandler = ^(FBRequestConnection *connection, id result, NSError *error) {
+	id completionHandler = ^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 		
 		if (result != nil) {
 			NSArray *data = [result objectForKey:@"data"];
@@ -76,7 +76,7 @@
 	};
 	
 	NSString *graphPath = [NSString stringWithFormat:@"%@/photos?limit=500", albumId];
-	_request = [FBRequest requestForGraphPath:graphPath];
+	_request = [[FBSDKGraphRequest alloc] initWithGraphPath:graphPath parameters:nil];
 	[_request startWithCompletionHandler:completionHandler];
 }
 

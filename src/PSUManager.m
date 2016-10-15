@@ -34,7 +34,7 @@
 }
 
 - (void)requestAlbums:(PSUSourceType)type completion:(void(^)(NSArray *albums))block {
-	NSLog(@"ISPhotosManager requestAlbum %i", type);
+	NSLog(@"PSUManager requestAlbum %i", type);
 	switch (type) {
 		case PSUSourceTypeAssetsLibrary:
 			_libraryLoader = [[LIBLoader alloc] init];
@@ -55,6 +55,12 @@
 			_pxLoader = [[PXLoader alloc] init];
 			[_pxLoader requestAlbums:block];
 			break;
+            
+        case PSUSourceTypePhotosightRu:
+            break;
+            
+        case PSUSourceTypeNifMagazine:
+            break;
 	}
 }
 
@@ -76,7 +82,13 @@
 			
 		case PSUSourceType500Px:
 			[_pxLoader requestPhotosForAlbumId:album.albumId completion:block];
-			break;
+            break;
+            
+        case PSUSourceTypePhotosightRu:
+            break;
+            
+        case PSUSourceTypeNifMagazine:
+            break;
 	}
 }
 
@@ -101,7 +113,13 @@
 		case PSUSourceType500Px:
 			if (_pxLoader == nil) return -1;
 			return [_pxLoader.albums count];
-			break;
+            break;
+            
+        case PSUSourceTypePhotosightRu:
+            break;
+            
+        case PSUSourceTypeNifMagazine:
+            break;
 	}
 	return 0;
 }
@@ -120,7 +138,16 @@
 			
 		case PSUSourceTypeInstagram:
 			return [_instagramLoader.photos count];
-			break;
+            break;
+            
+        case PSUSourceType500Px:
+            break;
+            
+        case PSUSourceTypePhotosightRu:
+            break;
+            
+        case PSUSourceTypeNifMagazine:
+            break;
 	}
 	return 0;
 }

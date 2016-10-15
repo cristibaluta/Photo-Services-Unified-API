@@ -7,21 +7,33 @@
 //
 
 #import "PSULoginManager.h"
-#import "PSUEnums.h"
+#import "PXAPI.h"
+#import "IGConnect.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <UIKit/UIKit.h>
 
 @interface PSULoginManager () <IGSessionDelegate, UIAlertViewDelegate> {
 	
 	PSUSourceType _loggingTo;
 	NSUInteger _pxUserId;
 	BOOL _fbLoggedIn;
-	
-	FBSession *_fbSession;
+    
 	Instagram *_igSession;
 	PXRequest *_pxRequest;
 }
 @end
 
 @implementation PSULoginManager
+
++ (instancetype)sharedManager {
+    static PSULoginManager *_sharedManager = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedManager = [[self alloc] init];
+    });
+    return _sharedManager;
+}
 
 - (id)init {
 	self = [super init];
@@ -33,17 +45,28 @@
 }
 
 - (void)activate {
-	[FBSession.activeSession handleDidBecomeActive];
+	[FBSDKAppEvents activateApp];
 }
 
 - (void)deactivate {
-	[_fbSession close];
+//	[_fbSession close];
 }
 
-- (BOOL)handleOpenURL:(NSURL*)url {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
+}
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
 	
 	if ([[url absoluteString] hasPrefix:@"fb"]) {
-		return [[FBSession activeSession] handleOpenURL:url];
+        return [[FBSDKApplicationDelegate sharedInstance] application:app
+                                                              openURL:url
+                                                    sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                           annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                        ];
 	}
 	if ([[url absoluteString] hasPrefix:@"ig"]) {
 		return [_igSession handleOpenURL:url];
@@ -55,11 +78,12 @@
 	
 	switch (type) {
 		
-		case PSUSourceTypeFacebook: {
+		case PSUSourceTypeFacebook:
+//        {
 //			RCLog(@"login to fb");
 			//NSArray *permissions = [[NSArray alloc] initWithObjects:@"user_photos", nil];
 			
-			id completeHandler = ^(FBSession *session, FBSessionState status, NSError *error) {
+//			id completeHandler = ^(FBSession *session, FBSessionState status, NSError *error) {
 				
 //				RCLog(@"login %i %@", status, error);
 //				RCLog(@"FBSessionStateCreated %i", FBSessionStateCreated);
@@ -69,34 +93,34 @@
 //				RCLog(@"FBSessionStateClosedLoginFailed %i", FBSessionStateClosedLoginFailed);
 //				RCLog(@"FBSessionStateClosed %i", FBSessionStateClosed);
 				
-				if (!error /*&& status == FBSessionStateOpen*/) {
+//				if (!error /*&& status == FBSessionStateOpen*/) {
 //					RCLog(@"login fb ok");
-					_fbLoggedIn = YES;
-					[self.delegate loginComplete:PSUSourceTypeFacebook];
-				}
-				else {
+//					_fbLoggedIn = YES;
+//					[self.delegate loginComplete:PSUSourceTypeFacebook];
+//				}
+//				else {
 //					RCLog(@"login error %@", error);
-					_loggingTo = -1;
-					_fbLoggedIn = NO;
-					[self.delegate loginError:PSUSourceTypeFacebook];
-				}
-			};
-			
-			BOOL lite = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"lite"] boolValue];
-			
-			FBSession *session = [[FBSession alloc] initWithAppID:nil
-													  permissions:nil
-												  urlSchemeSuffix:lite ? @"free" : nil
-											   tokenCacheStrategy:nil];
-			
-			[FBSession setActiveSession:session];
-			[session openWithBehavior:FBSessionLoginBehaviorUseSystemAccountIfPresent
-					completionHandler:completeHandler];
+//					_loggingTo = -1;
+//					_fbLoggedIn = NO;
+//					[self.delegate loginError:PSUSourceTypeFacebook];
+//				}
+//			};
+//			
+//			BOOL lite = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"lite"] boolValue];
+//			
+//			FBSession *session = [[FBSession alloc] initWithAppID:nil
+//													  permissions:nil
+//												  urlSchemeSuffix:lite ? @"free" : nil
+//											   tokenCacheStrategy:nil];
+//			
+//			[FBSession setActiveSession:session];
+//			[session openWithBehavior:FBSessionLoginBehaviorUseSystemAccountIfPresent
+//					completionHandler:completeHandler];
 			 
 //			[FBSession openActiveSessionWithReadPermissions:permissions
 //											   allowLoginUI:YES
 //										  completionHandler:completeHandler];
-		};
+//		};
 		break;
 			
 		case PSUSourceTypeInstagram: {
@@ -141,7 +165,7 @@
 	switch (type) {
 		
 		case PSUSourceTypeFacebook:
-			return [[FBSession activeSession] isOpen] && _fbLoggedIn;
+			return [FBSDKAccessToken currentAccessToken] && _fbLoggedIn;
 			break;
 		case PSUSourceTypeInstagram:
 			return _igSession != nil;
