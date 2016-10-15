@@ -19,8 +19,10 @@
 
 @implementation FBLoader
 
-- (void)requestAlbums:(void (^)(NSArray *))block {
+- (void)requestAlbums:(void (^)(NSArray<PSUAlbum *> *))block {
 	
+    [_albums removeAllObjects];
+    
 	id completionHandler = ^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 		
 		if (result != nil) {
@@ -53,7 +55,7 @@
 	[_request startWithCompletionHandler:completionHandler];
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray *))block {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray<PSUPhoto *> *))block {
 	
 	[_photos removeAllObjects];
 	//RCLog(@"requestPhotosForAlbumId %@", albumId);
@@ -81,8 +83,7 @@
 }
 
 - (void)cancel {
-	// There's nothing to cancel when enumerating the groups
-	
+	// Can't stop FB request
 }
 
 @end

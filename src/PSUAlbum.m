@@ -1,5 +1,5 @@
 //
-//  ISAlbum.m
+//  PSUAlbum.m
 //  Instaslider
 //
 //  Created by Baluta Cristian on 05/05/2013.

@@ -1,6 +1,5 @@
 //
-//  ISAlbum.h
-//  Instaslider
+//  PSUAlbum.h
 //
 //  Created by Baluta Cristian on 05/05/2013.
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
@@ -20,7 +19,7 @@
 /*!
  The cover image for this album. It is available after is loaded
  */
-@property (nonatomic) PSUSourceType type;// ISType
+@property (nonatomic) PSUSourceType type;// PSUSourceType
 
 /*!
  IndexPath in the UITableView

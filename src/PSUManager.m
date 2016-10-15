@@ -7,6 +7,7 @@
 //
 
 #import "PSUManager.h"
+#import "FILELoader.h"
 #import "LIBLoader.h"
 #import "FBLoader.h"
 #import "IGLoader.h"
@@ -16,6 +17,7 @@
 
 @implementation PSUManager {
 	// Services
+    FILELoader *_fileLoader;
 	LIBLoader *_libraryLoader;
 	FBLoader *_facebookLoader;
 	IGLoader *_instagramLoader;
@@ -33,26 +35,31 @@
 	return _sharedManager;
 }
 
-- (void)requestAlbums:(PSUSourceType)type completion:(void(^)(NSArray *albums))block {
-	NSLog(@"PSUManager requestAlbum %i", type);
-	switch (type) {
+- (void)requestAlbums:(PSUSourceType)type completion:(void(^)(NSArray<PSUAlbum *> *albums))block {
+	NSLog(@"PSUManager requestAlbum %lu", (unsigned long)type);
+    switch (type) {
+        case PSUSourceTypeAppDocuments:
+            _fileLoader = [FILELoader new];
+            [_fileLoader requestAlbums:block];
+            break;
+            
 		case PSUSourceTypeAssetsLibrary:
-			_libraryLoader = [[LIBLoader alloc] init];
+			_libraryLoader = [LIBLoader new];
 			[_libraryLoader requestAlbums:block];
 			break;
 			
 		case PSUSourceTypeFacebook:
-			_facebookLoader = [[FBLoader alloc] init];
+			_facebookLoader = [FBLoader new];
 			[_facebookLoader requestAlbums:block];
 			break;
 			
 		case PSUSourceTypeInstagram:
-			_instagramLoader = [[IGLoader alloc] init];
+			_instagramLoader = [IGLoader new];
 			[_instagramLoader requestAlbums:block];
 			break;
 			
 		case PSUSourceType500Px:
-			_pxLoader = [[PXLoader alloc] init];
+			_pxLoader = [PXLoader new];
 			[_pxLoader requestAlbums:block];
 			break;
             
@@ -64,10 +71,14 @@
 	}
 }
 
-- (void)requestPhotosForAlbum:(PSUAlbum *)album completion:(void(^)(NSArray *photos))block {
-	NSLog(@"ISPhotosManager requestPhotos %i", album.type);
+- (void)requestPhotosForAlbum:(PSUAlbum *)album completion:(void(^)(NSArray<PSUPhoto *> *photos))block {
+	NSLog(@"PSUPhotosManager requestPhotos %lu", (unsigned long)album.type);
 	switch (album.type) {
-			
+            
+        case PSUSourceTypeAppDocuments:
+            [_fileLoader requestPhotosForAlbumId:album.albumId completion:block];
+            break;
+            
 		case PSUSourceTypeAssetsLibrary:
 			[_libraryLoader requestPhotosForAlbumId:album.albumId completion:block];
 			break;
@@ -95,7 +106,11 @@
 - (NSUInteger)numberOfAlbums:(PSUSourceType)type {
 	
 	switch (type) {
-			
+            
+        case PSUSourceTypeAppDocuments:
+            return [_fileLoader.albums count];
+            break;
+            
 		case PSUSourceTypeAssetsLibrary:
 			return [_libraryLoader.albums count];
 			break;
@@ -124,10 +139,14 @@
 	return 0;
 }
 
-- (NSUInteger)numberOfPhotos:(PSUSourceType)type {
+- (NSUInteger)numberOfPhotosForAlbum:(PSUAlbum *)album {
 	
-	switch (type) {
-			
+	switch (album.type) {
+            
+        case PSUSourceTypeAppDocuments:
+            return [_fileLoader.photos count];
+            break;
+            
 		case PSUSourceTypeAssetsLibrary:
 			return [_libraryLoader.photos count];
 			break;

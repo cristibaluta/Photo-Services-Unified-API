@@ -18,8 +18,10 @@
 @end
 @implementation IGLoader
 
-- (void)requestAlbums:(void (^)(NSArray *))block {
+- (void)requestAlbums:(void (^)(NSArray<PSUAlbum *> *))block {
 	
+    [_albums removeAllObjects];
+    
 	NSArray *methods = [NSArray arrayWithObjects:@"/users/self/feed", @"/users/self/media/recent", @"/users/self/media/liked", @"/media/popular", nil];
 	NSArray *titles = [NSArray arrayWithObjects:@"My feed", @"My photos", @"Photos that i liked", @"Popular", nil];
 	
@@ -36,13 +38,17 @@
 	block(_albums);
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray *))block {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray<PSUPhoto *> *))block {
 	
 	[_photos removeAllObjects];
 	NSLog(@"requestPhotosForAlbumId %@", albumId);
 	
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:albumId, @"method", @"-1", @"count", nil];
 //    [app.login.instagram requestWithParams:params delegate:self];
+}
+
+- (void)cancel {
+    
 }
 
 

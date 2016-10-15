@@ -21,7 +21,7 @@
 
 @implementation LIBLoader
 
-- (id) init {
+- (instancetype)init {
 	self = [super init];
 	if (self) {
 		_assetslibrary = [[ALAssetsLibrary alloc] init];
@@ -29,8 +29,10 @@
 	return self;
 }
 
-- (void)requestAlbums:(void(^)(NSArray *albums))block {
+- (void)requestAlbums:(void(^)(NSArray<PSUAlbum *> *albums))block {
 	
+    [_albums removeAllObjects];
+    
 	ALAssetsLibraryAccessFailureBlock failHandler = ^(NSError *error) {
 		NSLog(@"failed");
 		block(nil);
@@ -61,7 +63,7 @@
 	
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray *photos))block {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray<PSUPhoto *> *photos))block {
 	NSLog(@"LIBLoader request photos for album id %@", albumId);
 	[_photos removeAllObjects];
 	

@@ -24,23 +24,23 @@
 
 // Override this methods
 
-- (void)requestAlbums:(void(^)(NSArray *albums))block {
-	
+- (void)requestAlbums:(void(^)(NSArray<PSUAlbum *> *albums))block {
+    NSAssert(NO, @"Method must be implemented by subclass");
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray *photos))block {
-	
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray<PSUPhoto *> *photos))block {
+	NSAssert(NO, @"Method must be implemented by subclass");
 }
 
 - (void)cancel {
-	
+	NSAssert(NO, @"Method must be implemented by subclass");
 }
 
-- (NSArray *)albums {
+- (NSArray<PSUAlbum *> *)albums {
 	return [NSArray arrayWithArray:_albums];
 }
 
-- (NSArray *)photos {
+- (NSArray<PSUPhoto *> *)photos {
 	return [NSArray arrayWithArray:_photos];
 }
 

@@ -8,10 +8,11 @@
 
 typedef NS_OPTIONS(NSUInteger, PSUSourceType) {
     
-	PSUSourceTypeAssetsLibrary = 0,
-	PSUSourceTypeFacebook = 1,
-	PSUSourceTypePhotosightRu = 2,
-	PSUSourceTypeNifMagazine = 3,
-	PSUSourceType500Px = 4,
-	PSUSourceTypeInstagram = 5
+    PSUSourceTypeAppDocuments = 0,
+	PSUSourceTypeAssetsLibrary,
+    PSUSourceTypeFacebook,
+    PSUSourceTypeInstagram,
+    PSUSourceType500Px,
+	PSUSourceTypePhotosightRu,
+	PSUSourceTypeNifMagazine
 };

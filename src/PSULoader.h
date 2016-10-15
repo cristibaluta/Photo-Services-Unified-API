@@ -7,24 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PSUAlbum.h"
+#import "PSUPhoto.h"
 
 @interface PSULoader : NSObject {
-	NSMutableArray *_albums;// PSUAlbum objects
-	NSMutableArray *_photos;
+	NSMutableArray<PSUAlbum *> *_albums;
+	NSMutableArray<PSUPhoto *> *_photos;
 }
 
-/*!
- PSUAlbum objects
- */
-@property (nonatomic, readonly) NSArray *albums;
+@property (nonatomic, readonly) NSArray<PSUAlbum *> *albums;
+@property (nonatomic, readonly) NSArray<PSUPhoto *> *photos;
 
-/*!
- PSUPhoto objects
- */
-@property (nonatomic, readonly) NSArray *photos;
-
-- (void)requestAlbums:(void(^)(NSArray *albums))block;
-- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray *photos))block;
+- (void)requestAlbums:(void(^)(NSArray<PSUAlbum *> *albums))block;
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray<PSUPhoto *> *photos))block;
 - (void)cancel;
 
 @end

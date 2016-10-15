@@ -1,5 +1,5 @@
 //
-//  ISPhoto.h
+//  PSUPhoto.h
 //  Instaslider
 //
 //  Created by Baluta Cristian on 04/05/2013.

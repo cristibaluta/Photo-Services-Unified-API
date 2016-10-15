@@ -13,8 +13,10 @@
 
 @implementation PXLoader
 
-- (void)requestAlbums:(void (^)(NSArray *))block {
+- (void)requestAlbums:(void (^)(NSArray<PSUAlbum *> *))block {
 	
+    [_albums removeAllObjects];
+    
 	NSArray *ids = [NSArray arrayWithObjects:@"0", @"1", @"2", nil];
 	NSArray *titles = [NSArray arrayWithObjects:@"My photos", @"Friends", @"Favourites", nil];
 	
@@ -31,7 +33,7 @@
 	block(_albums);
 }
 
-- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray *))block {
+- (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void (^)(NSArray<PSUPhoto *> *))block {
 	
 	[_photos removeAllObjects];
 	NSUInteger uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"px_user_id"];

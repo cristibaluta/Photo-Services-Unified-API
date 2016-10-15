@@ -69,7 +69,7 @@
 //			if (url != nil) {
 //				//RCLog(@"%@", url);
 //				CRPhoto *cell = [[CRPhoto alloc] init];
-//				cell.type = 1;//ISTypeLibrary;
+//				cell.type = 1;//PSUSourceTypeLibrary;
 //				cell.thumbUrl = url;
 //				cell.sourceUrl = url;
 //				cell.selected = YES;

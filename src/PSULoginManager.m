@@ -13,12 +13,13 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <UIKit/UIKit.h>
 
-@interface PSULoginManager () <IGSessionDelegate, UIAlertViewDelegate> {
+@interface PSULoginManager () <IGSessionDelegate, FBSDKLoginButtonDelegate, UIAlertViewDelegate> {
 	
 	PSUSourceType _loggingTo;
 	NSUInteger _pxUserId;
 	BOOL _fbLoggedIn;
     
+    FBSDKLoginButton *_loginButton;
 	Instagram *_igSession;
 	PXRequest *_pxRequest;
 }
@@ -40,6 +41,7 @@
 	if (self) {
 		// Set some defaults
 		[PXRequest setConsumerKey:PX_CONSUMER_KEY consumerSecret:PX_CONSUMER_SECRET];
+        _loginButton = [[FBSDKLoginButton alloc] init];
 	}
 	return self;
 }
@@ -78,11 +80,13 @@
 	
 	switch (type) {
 		
-		case PSUSourceTypeFacebook:
-//        {
-//			RCLog(@"login to fb");
-			//NSArray *permissions = [[NSArray alloc] initWithObjects:@"user_photos", nil];
+		case PSUSourceTypeFacebook: {
+			RCLog(@"login to fb");
+			NSArray *permissions = [[NSArray alloc] initWithObjects:@"user_photos", nil];
 			
+            _loginButton.readPermissions = permissions;
+            [_loginButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            
 //			id completeHandler = ^(FBSession *session, FBSessionState status, NSError *error) {
 				
 //				RCLog(@"login %i %@", status, error);
@@ -120,7 +124,7 @@
 //			[FBSession openActiveSessionWithReadPermissions:permissions
 //											   allowLoginUI:YES
 //										  completionHandler:completeHandler];
-//		};
+		};
 		break;
 			
 		case PSUSourceTypeInstagram: {
@@ -180,11 +184,30 @@
 }
 
 
+#pragma mark - FBSDKLoginButtonDelegate
+
+- (void)  loginButton:(FBSDKLoginButton *)loginButton
+didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
+                error:(NSError *)error {
+    
+    NSLog(@"%@ %@", result, error);
+    if (!error) {
+        _fbLoggedIn = YES;
+        [self.delegate loginComplete:PSUSourceTypeFacebook];
+    }
+    else {
+        _loggingTo = -1;
+        _fbLoggedIn = NO;
+        [self.delegate loginError:PSUSourceTypeFacebook];
+    }
+}
+
 #pragma - IGSessionDelegate
 
 - (void)igDidLogin {
     // here i can store accessToken
-    [[NSUserDefaults standardUserDefaults] setObject:_igSession.accessToken forKey:@"PSUSourceTypeInstagramAccessToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:_igSession.accessToken
+                                              forKey:@"PSUSourceTypeInstagramAccessToken"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	[self.delegate loginComplete:PSUSourceTypeInstagram];
 }
