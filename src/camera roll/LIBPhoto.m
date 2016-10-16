@@ -6,26 +6,36 @@
 //  Copyright (c) 2013 Baluta Cristian. All rights reserved.
 //
 
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import "LIBPhoto.h"
 
 @implementation LIBPhoto
+
+- (instancetype)initWithAsset:(PHAsset *)asset {
+    self = [super init];
+    if (self) {
+        _asset = asset;
+    }
+    return self;
+}
 
 - (void)preloadThumbImage {
 	
     if (self.thumbImage == nil) {
 		
-		ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset){
-			
-			self.thumbImage = [UIImage imageWithCGImage:[myasset thumbnail]];
-			[self dispatchLoadComplete];
-		};
-		ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
-			NSLog(@"Cant get image - %@", [myerror localizedDescription]);
-		};
-		
-		ALAssetsLibrary *assetslibrary = [[ALAssetsLibrary alloc] init];
-		[assetslibrary assetForURL:self.thumbUrl resultBlock:resultblock failureBlock:failureblock];
+        NSInteger retinaScale = [UIScreen mainScreen].scale;
+        CGFloat thumbWidth = [UIScreen mainScreen].bounds.size.width / 4;
+        CGSize retinaSquare = CGSizeMake(thumbWidth*retinaScale, thumbWidth*retinaScale);
+        
+        [[PHImageManager defaultManager] requestImageForAsset:_asset
+                                                   targetSize:retinaSquare
+                                                  contentMode:PHImageContentModeAspectFill
+                                                      options:nil
+                                                resultHandler:^(UIImage *result, NSDictionary *info) {
+                                                    
+            self.thumbImage = result;
+            [self dispatchLoadComplete];
+        }];
 	}
 	else {
         [self dispatchLoadComplete];
@@ -37,30 +47,24 @@
 	NSLog(@"preloadSourceImage %@", self.sortedIndexPath);
 	if (self.sourceImage == nil) {
 		
-		ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset){
-			//RCLog(@"resultblock %@", myasset);
-			ALAssetRepresentation *rep = [myasset defaultRepresentation];
-			//CGImageRef iref = [rep fullResolutionImage];
-			CGImageRef iref = [rep fullScreenImage];
-			if (iref) {
-				self.sourceImage = [UIImage imageWithCGImage:iref];
-				[self dispatchLoadComplete];
-			}
-			else {
-				NSLog(@"error creating the fullscreen version of the image");
-			}
-		};
-		ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
-			NSLog(@"Cant get image - %@", [myerror localizedDescription]);
-		};
-		
-		ALAssetsLibrary *assetslibrary = [[ALAssetsLibrary alloc] init];
-		[assetslibrary assetForURL:self.sourceUrl resultBlock:resultblock failureBlock:failureblock];
+        CGSize imageSize = CGSizeMake(_asset.pixelWidth, _asset.pixelHeight);
+        PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
+        requestOptions.version = PHImageRequestOptionsVersionCurrent;
+        requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        
+        [[PHImageManager defaultManager] requestImageForAsset:_asset
+                                                   targetSize:imageSize
+                                                  contentMode:PHImageContentModeDefault
+                                                      options:requestOptions
+                                                resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            
+            self.sourceImage = result;
+            [self dispatchLoadComplete];
+        }];
 	}
 	else {
         [self dispatchLoadComplete];
     }
 }
-
 
 @end

@@ -9,7 +9,7 @@
 #import "PSUEnums.h"
 
 @protocol PSUAlbumDelegate <NSObject>
-- (void)loadFinishedForIndexPath:(NSIndexPath*)indexPath;
+- (void)loadFinishedForIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface PSUAlbum : NSObject

@@ -22,7 +22,7 @@
 	
 	for (int i=0; i<[ids count]; i++) {
 		PSUAlbum *album = [[PSUAlbum alloc] init];
-		album.type = 4;
+		album.type = PSUSourceType500Px;
 		album.name = [titles objectAtIndex:i];
 		album.count = 1;
 		album.albumId = [ids objectAtIndex:i];
@@ -47,7 +47,7 @@
 			for (NSDictionary *obj in photos) {
 				
 				PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
-				photo.type = 4;
+				photo.type = PSUSourceType500Px;
 				
 				NSArray *images = [obj valueForKey:@"image_url"];
 				

@@ -7,16 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import "PSUAlbum.h"
 
 @interface LIBAlbum : PSUAlbum
 
-- (instancetype)initWithAssetGroup:(ALAssetsGroup *)groupRef;
+- (instancetype)initWithAssetCollection:(PHAssetCollection *)collection;
 
-/*!
- 
- */
-@property (nonatomic, readonly) ALAssetsGroup *groupRef;
+@property (nonatomic, readonly) PHAssetCollection *collection;
 
 @end

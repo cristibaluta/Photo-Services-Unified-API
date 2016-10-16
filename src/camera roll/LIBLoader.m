@@ -7,7 +7,7 @@
 //
 
 #import "LIBLoader.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import "PSUAlbum.h"
 #import "LIBAlbum.h"
 #import "LIBPhoto.h"
@@ -15,7 +15,7 @@
 #import "RCLog.h"
 
 @interface LIBLoader () {
-	ALAssetsLibrary *_assetslibrary;
+	PHPhotoLibrary *_library;
 }
 @end
 
@@ -24,7 +24,7 @@
 - (instancetype)init {
 	self = [super init];
 	if (self) {
-		_assetslibrary = [[ALAssetsLibrary alloc] init];
+		_library = [PHPhotoLibrary sharedPhotoLibrary];
 	}
 	return self;
 }
@@ -33,34 +33,25 @@
 	
     [_albums removeAllObjects];
     
-	ALAssetsLibraryAccessFailureBlock failHandler = ^(NSError *error) {
-		NSLog(@"failed");
-		block(nil);
-    };
-	
-	ALAssetsLibraryGroupsEnumerationResultsBlock groupsEnumerator = ^(ALAssetsGroup *group, BOOL *stop) {
-		//RCLog(@"%@", group);
-        if (group != nil) {
-			LIBAlbum *album = [[LIBAlbum alloc] initWithAssetGroup:group];
-			
-			album.type = PSUSourceTypeAssetsLibrary;
-			album.count = (int)[group numberOfAssets];
-			album.coverUrl = [group valueForProperty:ALAssetsGroupPropertyURL];
-			album.albumId = [group valueForProperty:ALAssetsGroupPropertyPersistentID];
-			album.name = [group valueForProperty:ALAssetsGroupPropertyName];
-			album.coverImage = [UIImage imageWithCGImage:[group posterImage]];
-			[_albums addObject:album];
-			RCLogO(album.name);
-        }
-		else {
-			block(_albums);
-		}
-    };
-	
-	[_assetslibrary enumerateGroupsWithTypes:ALAssetsGroupAll
-								 usingBlock:groupsEnumerator
-							   failureBlock:failHandler];
-	
+    PHFetchOptions *userAlbumsOptions = [PHFetchOptions new];
+    userAlbumsOptions.predicate = [NSPredicate predicateWithFormat:@"estimatedAssetCount > 0"];
+    
+    PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+                                                                                                    subtype:PHAssetCollectionSubtypeAny
+                                                                                                    options:userAlbumsOptions];
+    [assetCollections enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        LIBAlbum *album = [[LIBAlbum alloc] initWithAssetCollection:obj];
+        
+        album.type = PSUSourceTypeAssetsLibrary;
+        album.count = obj.estimatedAssetCount;
+        album.coverUrl = nil;
+        album.albumId = obj.localIdentifier;
+        album.name = obj.localizedTitle;
+        [_albums addObject:album];
+        RCLogO(album.name);
+    }];
+    block(_albums);
 }
 
 - (void)requestPhotosForAlbumId:(NSString *)albumId completion:(void(^)(NSArray<PSUPhoto *> *photos))block {
@@ -68,43 +59,36 @@
 	[_photos removeAllObjects];
 	
 	// Search the album with the albumId
-	ALAssetsGroup *groupRef;
+	PHAssetCollection *collection;
 	for (LIBAlbum *album in self.albums) {
 		if ([albumId isEqualToString:album.albumId]) {
-			groupRef = album.groupRef;
+			collection = album.collection;
 			break;
 		}
 	}
 	
-	ALAssetsGroupEnumerationResultsBlock groupEnumerator = ^(ALAsset *asset, NSUInteger index, BOOL *stop) {
-		
-        if (asset != NULL) {
-			
-			NSDictionary *dict = [asset valueForProperty:ALAssetPropertyURLs];
-			NSURL *url = [dict objectForKey:@"public.jpeg"];
-			if (url != nil) {
-				//RCLog(@"%@", url);
-				LIBPhoto *cell = [[LIBPhoto alloc] init];
-				cell.type = PSUSourceTypeAssetsLibrary;
-				cell.thumbUrl = url;
-				cell.sourceUrl = url;
-				cell.selected = YES;
-				cell.date = [asset valueForProperty:ALAssetPropertyDate];
-				[_photos addObject:cell];
-			}
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d", PHAssetMediaTypeImage];
+
+    PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:options];
+    
+    NSLog(@"sub album title is %@, count is %ld", collection.localizedTitle, assetsFetchResult.count);
+    if (assetsFetchResult.count > 0) {
+        for (PHAsset *asset in assetsFetchResult) {
+//            RCLogO(asset);
+            LIBPhoto *cell = [[LIBPhoto alloc] initWithAsset:asset];
+            cell.type = PSUSourceTypeAssetsLibrary;
+            cell.selected = YES;
+            cell.date = asset.creationDate;
+            [_photos addObject:cell];
         }
-		else {
-			block(_photos);
-		}
-    };
-	
-	[groupRef enumerateAssetsUsingBlock:groupEnumerator];
+        block(_photos);
+    }
 }
 
 - (void)cancel {
 	// There's nothing to cancel when enumerating the groups
 }
-
-
 
 @end

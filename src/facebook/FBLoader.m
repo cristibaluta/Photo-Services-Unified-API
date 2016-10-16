@@ -34,7 +34,7 @@
 					continue;
 				}
 				FBAlbum *album = [[FBAlbum alloc] init];
-				album.type = 2;
+				album.type = PSUSourceTypeFacebook;
 				album.name = [obj objectForKey:@"name"];
 				album.count = (int)[[obj objectForKey:@"count"] integerValue];
 				album.albumId = [obj objectForKey:@"id"];
@@ -66,7 +66,7 @@
 			
 			for (id obj in data) {
 				PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
-				photo.type = 2;
+				photo.type = PSUSourceTypeFacebook;
 				photo.thumbUrl = [NSURL URLWithString:[obj objectForKey:@"picture"]];
 				photo.sourceUrl = [NSURL URLWithString:[obj objectForKey:@"source"]];
 				photo.selected = YES;

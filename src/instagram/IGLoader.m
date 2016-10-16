@@ -26,8 +26,8 @@
 	NSArray *titles = [NSArray arrayWithObjects:@"My feed", @"My photos", @"Photos that i liked", @"Popular", nil];
 	
 	for (int i=0; i<[methods count]; i++) {
-		PSUAlbum *album = [[PSUAlbum alloc] init];
-		album.type = 3;
+		PSUAlbum *album = [PSUAlbum new];
+		album.type = PSUSourceTypeInstagram;
 		album.name = [titles objectAtIndex:i];
 		album.count = 1;
 		album.albumId = [methods objectAtIndex:i];
@@ -67,7 +67,7 @@
 		PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
 		NSDictionary *images = [obj objectForKey:@"images"];
 		//RCLog(@"%@", images);
-		photo.type = 3;
+		photo.type = PSUSourceTypeInstagram;
 		photo.thumbUrl = [NSURL URLWithString:[[images objectForKey:@"thumbnail"] objectForKey:@"url"]];
 		photo.sourceUrl = [NSURL URLWithString:[[images objectForKey:@"standard_resolution"] objectForKey:@"url"]];
 		photo.selected = YES;
