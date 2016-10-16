@@ -8,13 +8,19 @@
 
 #import "PSUWebPhoto.h"
 
+@interface PSUWebPhoto() {
+    BOOL loadingThumb;
+}
+
+@end
+
 @implementation PSUWebPhoto
 
-- (void)preloadThumbImage {
+- (void)preloadThumbImage:(void(^)(PSUPhoto *))completionBlock {
 	
     if (self.thumbImage == nil) {
 		loadingThumb = YES;
-		[self loadImageData:self.thumbUrl];
+		[self loadImageData:self.thumbUrl completion:completionBlock];
 	}
 	else {
         [self dispatchLoadComplete];
@@ -25,46 +31,43 @@
 	
 	if (self.sourceImage == nil) {
 		loadingThumb = NO;
-		[self loadImageData:self.sourceUrl];
+		[self loadImageData:self.sourceUrl completion:nil];
 	}
 	else {
         [self dispatchLoadComplete];
     }
 }
 
-- (void)loadImageData:(NSURL *)url {
+- (void)loadImageData:(NSURL *)url completion:(void(^)(PSUPhoto *))completionBlock {
 	
 	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
 														   cachePolicy:NSURLRequestReloadIgnoringCacheData
 													   timeoutInterval:60.0];
-	
-	//	NSMutableString *postStr = [[NSMutableString alloc] init];
-	//	for (id key in info) [postStr appendFormat:@"%@=%@&", key, [info objectForKey:key]];
-	//	NSData *postData = [postStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	//
-	//	[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	//	[request setHTTPMethod:@"POST"];
-	//	[request setHTTPBody:postData];
-	
-	NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request
-															completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-																[self cacheImage:[NSData dataWithContentsOfURL:location]];
-															}];
-	
+	NSURLSessionDownloadTask *downloadTask =
+    [session downloadTaskWithRequest:request
+                   completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                       
+                       [self cacheImage:[NSData dataWithContentsOfURL:location]];
+                       
+                       dispatch_async(dispatch_get_main_queue(),^{
+                           if (completionBlock != nil) {
+                               completionBlock(self);
+                           }
+                           [self dispatchLoadComplete];
+                       });
+    }];
 	[downloadTask resume];
 }
 
-- (void)cacheImage:(NSData*)imageData {
+- (void)cacheImage:(NSData *)imageData {
+    
 	if (loadingThumb) {
 		self.thumbImage = [[UIImage alloc] initWithData:imageData];
-	}
-	else {
+	} else {
 		self.sourceImage = [[UIImage alloc] initWithData:imageData];
 	}
-    
-    [self dispatchLoadComplete];
 }
 
 @end

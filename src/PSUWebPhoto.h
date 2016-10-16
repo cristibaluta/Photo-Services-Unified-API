@@ -8,8 +8,6 @@
 
 #import "PSUPhoto.h"
 
-@interface PSUWebPhoto : PSUPhoto {
-	BOOL loadingThumb;
-}
+@interface PSUWebPhoto : PSUPhoto
 
 @end

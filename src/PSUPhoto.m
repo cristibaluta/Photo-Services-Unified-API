@@ -14,16 +14,18 @@
 	self.selected = v;
 }
 
-- (void)preloadThumbImage{
+- (void)preloadThumbImage:(void(^)(PSUPhoto *))completionBlock {
 	
 }
 
-- (void)preloadSourceImage{
+- (void)preloadSourceImage {
 	
 }
 
 - (void)dispatchLoadComplete {
-	[self.delegate photoFinishedLoading:self];
+    if (self.delegate != nil) {
+        [self.delegate photoFinishedLoading:self];
+    }
 }
 
 @end

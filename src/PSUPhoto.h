@@ -35,7 +35,7 @@
 @property (nonatomic, copy) NSDate *date;
 
 - (void)select:(BOOL)v;
-- (void)preloadThumbImage;
+- (void)preloadThumbImage:(void(^)(PSUPhoto *))completionBlock;
 - (void)preloadSourceImage;
 - (void)dispatchLoadComplete;
 

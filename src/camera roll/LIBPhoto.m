@@ -19,7 +19,7 @@
     return self;
 }
 
-- (void)preloadThumbImage {
+- (void)preloadThumbImage:(void(^)(PSUPhoto *))completionBlock {
 	
     if (self.thumbImage == nil) {
 		
@@ -34,11 +34,13 @@
                                                 resultHandler:^(UIImage *result, NSDictionary *info) {
                                                     
             self.thumbImage = result;
-            [self dispatchLoadComplete];
+            dispatch_async(dispatch_get_main_queue(),^{
+                completionBlock(self);
+            });
         }];
 	}
 	else {
-        [self dispatchLoadComplete];
+        completionBlock(self);
     }
 }
 
@@ -59,7 +61,9 @@
                                                 resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             
             self.sourceImage = result;
-            [self dispatchLoadComplete];
+            dispatch_async(dispatch_get_main_queue(),^{
+                [self dispatchLoadComplete];
+            });
         }];
 	}
 	else {
