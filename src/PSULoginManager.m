@@ -42,6 +42,7 @@
 		// Set some defaults
 		[PXRequest setConsumerKey:PX_CONSUMER_KEY consumerSecret:PX_CONSUMER_SECRET];
         _loginButton = [[FBSDKLoginButton alloc] init];
+        _loginButton.delegate = self;
 	}
 	return self;
 }
@@ -88,7 +89,7 @@
             [_loginButton sendActionsForControlEvents:UIControlEventTouchUpInside];
             
 //			id completeHandler = ^(FBSession *session, FBSessionState status, NSError *error) {
-				
+//				
 //				RCLog(@"login %i %@", status, error);
 //				RCLog(@"FBSessionStateCreated %i", FBSessionStateCreated);
 //				RCLog(@"FBSessionStateCreatedTokenLoaded %i", FBSessionStateCreatedTokenLoaded);
@@ -96,7 +97,7 @@
 //				RCLog(@"FBSessionStateOpenTokenExtended %i", FBSessionStateOpenTokenExtended);
 //				RCLog(@"FBSessionStateClosedLoginFailed %i", FBSessionStateClosedLoginFailed);
 //				RCLog(@"FBSessionStateClosed %i", FBSessionStateClosed);
-				
+//				
 //				if (!error /*&& status == FBSessionStateOpen*/) {
 //					RCLog(@"login fb ok");
 //					_fbLoggedIn = YES;
@@ -120,7 +121,7 @@
 //			[FBSession setActiveSession:session];
 //			[session openWithBehavior:FBSessionLoginBehaviorUseSystemAccountIfPresent
 //					completionHandler:completeHandler];
-			 
+//			 
 //			[FBSession openActiveSessionWithReadPermissions:permissions
 //											   allowLoginUI:YES
 //										  completionHandler:completeHandler];
@@ -169,7 +170,7 @@
 	switch (type) {
 		
 		case PSUSourceTypeFacebook:
-			return [FBSDKAccessToken currentAccessToken] && _fbLoggedIn;
+            return [FBSDKAccessToken currentAccessToken];// && _fbLoggedIn;
 			break;
 		case PSUSourceTypeInstagram:
 			return _igSession != nil;
@@ -200,6 +201,10 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
         _fbLoggedIn = NO;
         [self.delegate loginError:PSUSourceTypeFacebook];
     }
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    _fbLoggedIn = NO;
 }
 
 #pragma - IGSessionDelegate

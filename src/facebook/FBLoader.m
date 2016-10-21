@@ -26,7 +26,7 @@
 	id completionHandler = ^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
 		
 		if (result != nil) {
-			NSLog(@"%@", result);
+//			NSLog(@"%@", result);
 			NSArray *a = [result objectForKey:@"data"];
 			
 			for (id obj in a) {
@@ -38,9 +38,10 @@
 				album.name = [obj objectForKey:@"name"];
 				album.count = (int)[[obj objectForKey:@"count"] integerValue];
 				album.albumId = [obj objectForKey:@"id"];
-				album.coverUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=album&access_token=%@",
-													   [obj objectForKey:@"cover_photo"],
-													   [FBSDKAccessToken currentAccessToken]]];
+				album.coverUrl = [NSURL URLWithString:[obj objectForKey:@"picture"][@"data"][@"url"]];
+//                [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=album&access_token=%@",
+//													   [obj objectForKey:@"cover_photo"][@"id"],
+//													   [FBSDKAccessToken currentAccessToken].tokenString]];
 				[_albums addObject:album];
 			}
 			
@@ -51,7 +52,7 @@
 		}
 	};
 	
-	_request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me/albums" parameters:nil];
+	_request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me/albums" parameters:@{@"fields": @"name,count,picture"}];
 	[_request startWithCompletionHandler:completionHandler];
 }
 
@@ -68,7 +69,8 @@
 				PSUWebPhoto *photo = [[PSUWebPhoto alloc] init];
 				photo.type = PSUSourceTypeFacebook;
 				photo.thumbUrl = [NSURL URLWithString:[obj objectForKey:@"picture"]];
-				photo.sourceUrl = [NSURL URLWithString:[obj objectForKey:@"source"]];
+                NSArray *images = [obj objectForKey:@"images"];
+				photo.sourceUrl = [NSURL URLWithString:[[images firstObject] objectForKey:@"source"]];
 				photo.selected = YES;
 				//NSString *datestr = [obj objectForKey:@"created_time"];
 				[_photos addObject:photo];
@@ -78,7 +80,7 @@
 	};
 	
 	NSString *graphPath = [NSString stringWithFormat:@"%@/photos?limit=500", albumId];
-	_request = [[FBSDKGraphRequest alloc] initWithGraphPath:graphPath parameters:nil];
+	_request = [[FBSDKGraphRequest alloc] initWithGraphPath:graphPath parameters:@{@"fields": @"images,picture"}];
 	[_request startWithCompletionHandler:completionHandler];
 }
 
